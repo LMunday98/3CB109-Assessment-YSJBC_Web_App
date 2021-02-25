@@ -4,7 +4,6 @@ from flask import render_template
 
 from app import app
 
-# Load the controllers
 from app.controllers import *
 
 @app.route('/')
@@ -16,4 +15,4 @@ def index():
 def about():
     return render_template("about.html")
 
-app.route('/hello')(hello.hello)
+app.route('/hello')(hello.hi)
