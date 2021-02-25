@@ -9,4 +9,4 @@ This assignment requires the development of a REST web service application. A cl
 
 * The service needs to be provided by a database that is also hosted on cs2s.
 
-* The service must be wrirrten in Python. The client in html / javascript.
+* The service must be written in Python. The client in html / javascript.
