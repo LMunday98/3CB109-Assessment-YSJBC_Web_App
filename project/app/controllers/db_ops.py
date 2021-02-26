@@ -11,7 +11,12 @@ def user_exist(email):
     cursor.execute("SELECT * from users where user_email=%s", [email])
     
     if cursor.rowcount == 0:
-        return True
-    else:
         return False
+    else:
+        return True
         
+def get_user(email):
+    cursor, conn = connection()
+    cursor.execute("SELECT * from users where user_email=%s", [email])
+    results = cursor.fetchone()
+    return results
