@@ -11,7 +11,7 @@ from app.controllers import *
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'GET':
-        return render_template('form.html')
+        return render_template('user/login.html')
      
     if request.method == 'POST':
         try:
@@ -22,7 +22,7 @@ def login():
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
     if request.method == 'GET':
-        return render_template('form.html')
+        return render_template('user/register.html')
      
     if request.method == 'POST':
         try:
