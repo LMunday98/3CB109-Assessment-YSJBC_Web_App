@@ -17,6 +17,14 @@ def about():
 def insert():
     return render_template("form.html")
 
-@app.route('/form')
-def form():
-    return render_template('form.html')
+@app.route('/blog')
+def blog():
+    return render_template("blog.html")
+
+@app.route('/training')
+def training():
+    return render_template("training.html")
+
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")

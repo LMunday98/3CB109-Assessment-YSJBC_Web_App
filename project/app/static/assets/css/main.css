@@ -1,8 +1,74 @@
-nav {
-    margin-bottom: 3em;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+/* Basic */
+
+body {
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0)), url("images/bg01.png");
+    background-color: #f7f7f7;
+    background-position: top left, top left;
+    background-repeat: repeat-x, repeat;
+    background-size: 100% 30em, auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13pt;
+    color: #696969;
+    font-weight: 300;
+    line-height: 2.25em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444;
+    font-weight: 800;
+}
+
+/* Page content */
+
+.card {
+    box-shadow: 0 1px 2px 0 rgba(211, 211, 211, 0.2);
+    margin-top: 3em;
 }
 
 .footer {
     margin-top: 3em;
+}
+
+/* nav */
+
+nav {
+    margin-bottom: 3em;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    background-color: white;
+}
+
+#nav #nav-logo {
+    color: #444;
+    font-family: 'Oleo Script', serif;
+    font-weight: 400;
+    font-size: 1.75em;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#nav-links a {
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
+    -ms-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    font-weight: 800;
+    letter-spacing: 0.025em;
+    color: #696969;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 0em 1em 0em 1em;
+}
+
+#nav-links a:hover {
+    background-color: lightgray;
+}
+
+#nav-links a.current {
+    background: #444;
+    color: #fff;
 }
