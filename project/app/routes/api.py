@@ -9,7 +9,7 @@ from app.controllers import *
 
 # Define api calls
 @app.route('/register', methods = ['POST', 'GET'])
-def login():
+def register():
     if request.method == 'GET':
         return render_template('form.html')
      
