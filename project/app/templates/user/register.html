@@ -2,14 +2,14 @@
 
 {% extends "base.html" %}
 
-{% set active_page = "insert" %}
-{% block title %}Insert{% endblock %}
+{% set active_page = "user" %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
 
 <div class="card">
   <div class="card-body">
-    <h1 class="card-title">Insert Data</h1>
+    <h1 class="card-title">User Register</h1>
 
     {% if msg is defined %}
       <h6 class="card-subtitle mb-2 text-danger">{{ msg }}</h6>
@@ -30,6 +30,7 @@
       <input type="password" class="form-control"  name="password_confirm" id="confirm_password" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    <p>Already have an account? Click <a href="/user/login">here</a> to sign in!</p>
   </form>
   </div>
 </div>

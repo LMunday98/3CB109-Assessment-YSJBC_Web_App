@@ -8,10 +8,21 @@ from app import app
 from app.controllers import *
 
 # Define api calls
-@app.route('/register', methods = ['POST', 'GET'])
+@app.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'GET':
-        return render_template('form.html')
+        return render_template('user/login.html')
+     
+    if request.method == 'POST':
+        try:
+            return auth.login(request.form)
+        except Exception as e:
+            return(str(e))
+
+@app.route('/register', methods = ['POST', 'GET'])
+def register():
+    if request.method == 'GET':
+        return render_template('user/register.html')
      
     if request.method == 'POST':
         try:
@@ -19,4 +30,9 @@ def login():
         except Exception as e:
             return(str(e))
 
-
+@app.route('/logout')
+def logout():
+    try:
+        return auth.logout()
+    except Exception as e:
+        return(str(e))
