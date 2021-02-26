@@ -16,11 +16,17 @@ body {
     box-shadow: 0 1px 2px 0 rgba(211, 211, 211, 0.2);
 }
 
-#nav {
-    margin-left: 5em;
+#nav #nav-logo {
+    color: #444;
+    font-family: 'Oleo Script', serif;
+    font-weight: 400;
+    font-size: 1.75em;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-#nav a {
+#nav-links a {
     -moz-transition: background-color .25s ease-in-out;
     -webkit-transition: background-color .25s ease-in-out;
     -ms-transition: background-color .25s ease-in-out;
@@ -34,11 +40,11 @@ body {
     margin: 0em 1em 0em 1em;
 }
 
-#nav a:hover {
+#nav-links a:hover {
     background-color: lightgray;
 }
 
-#nav a.current {
+#nav-links a.current {
     background: #444;
     color: #fff;
 }
