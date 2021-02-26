@@ -5,11 +5,32 @@
 {% set active_page = "index" %}
 {% block title %}Home{% endblock %}
 
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/home.css') }}">
+{% endblock %}
+
 {% block body %}
-<div class="card">
-  <div class="card-body">
-    <h1 class="card-title">Flask Is Awesome</h1>
-    <p class="card-text">And I'm glad to be learning so much about it!</p>
+<!-- Banner -->
+<div id="banner-wrapper">
+  <div id="banner" class="box content-container">
+    <div class="row">
+      <div class="col-7 col-12-medium">
+        <h2>Hi, we are YSJBC.</h2>
+        <p>Check out what we've recently been up to.</p>
+      </div>
+      <div class="col-5 col-12-medium">
+        <ul>
+          <li><a href="#" class="banner-button large icon solid">
+            Blog
+            <span style="float: right;" class="btn-icon fas fa-arrow-circle-right"></span>
+          </a></li>
+          <li><a href="#" class="banner-button alt large icon solid">
+            Training
+            <span style="float: right;"  class="btn-icon fas fa-calendar-alt"></span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
