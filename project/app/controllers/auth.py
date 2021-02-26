@@ -1,4 +1,4 @@
-from app.db import insert
+from app.db import *
 from flask import render_template
 
 def register(form_data):
@@ -7,8 +7,11 @@ def register(form_data):
     password = form_data['password']
     confirm_password = form_data['password_confirm']
 
-    if (not email or not password):
-        return render_template("form.html", msg="Please fill out all fields.")
+    if (not (email or password or confirm_password) ):
+        return render_template("form.html", msg="Please fill out all fields!")
+
+    if (not (password == confirm_password) ):
+        return render_template("form.html", msg="Passwords do not match!")
 
     table = "users"
     fields = "user_name,user_password"
