@@ -26,8 +26,10 @@ def contact():
     return render_template("user/contact.html")
 
 # Define admin routes
+@app.route('/admin/login')
+def admin_login():
+    return render_template("admin/index.html")
 
-
-@app.route('/insert')
-def insert():
-    return render_template("admin/form.html")
+@app.route('/admin/register')
+def admin_register():
+    return render_template("admin/register.html")
