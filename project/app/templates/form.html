@@ -6,18 +6,20 @@
 
 {% block body %}
 
-<div class="jumbotron">
-  <h1>Insert Data</h1>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Insert Data</h1>
 
-  {% if msg is defined %}
-    <h3>{{ msg }}</h3>
-  {% endif %}
+    {% if msg is defined %}
+      <h6 class="card-subtitle mb-2 text-muted">{{ msg }}</h6>
+    {% endif %}
 
-  <form action="/register" method = "POST">
-    <p>name <input type = "text" name = "name" /></p>
-    <p>password <input type = "text" name = "password" /></p>
-    <p><input type = "submit" value = "Submit" /></p>
- </form>
+    <form action="/register" method = "POST">
+      <p>name <input type = "text" name = "name" /></p>
+      <p>password <input type = "text" name = "password" /></p>
+      <p><input type = "submit" value = "Submit" /></p>
+   </form>
+  </div>
 </div>
 {% endblock %}
 
