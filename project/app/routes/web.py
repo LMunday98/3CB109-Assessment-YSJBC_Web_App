@@ -28,7 +28,7 @@ def contact():
 # Define user routes
 @app.route('/user/login')
 def user_login():
-    return render_template("user/index.html")
+    return render_template("user/login.html")
 
 @app.route('/user/register')
 def user_register():
@@ -37,7 +37,7 @@ def user_register():
 # Define admin routes
 @app.route('/admin/login')
 def admin_login():
-    return render_template("admin/index.html")
+    return render_template("admin/login.html")
 
 @app.route('/admin/home')
 def admin_home():
