@@ -26,14 +26,14 @@ def insert():
 def form():
     return render_template('form.html')
 
-@app.route('/login', methods = ['POST', 'GET'])
+@app.route('/register', methods = ['POST', 'GET'])
 def login():
     if request.method == 'GET':
         return render_template('form.html')
      
     if request.method == 'POST':
         try:
-            return auth.login(request.form)
+            return auth.register(request.form)
         except Exception as e:
             return(str(e))
 

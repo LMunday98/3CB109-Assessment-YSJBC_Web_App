@@ -1,7 +1,7 @@
 from app.db import insert
 from flask import render_template
 
-def login(form_data):
+def register(form_data):
 
     if (not form_data['name'] or not form_data['password']):
         return render_template("form.html", msg="Please fill out all fields.")
