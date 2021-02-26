@@ -1,5 +1,5 @@
 from app.db import *
-from flask import render_template
+from flask import render_template, redirect
 
 def login(form_data):
     
@@ -40,3 +40,7 @@ def register(form_data):
     insert(data)
 
     return render_template("index.html")
+
+def logout():
+    # logout stuff
+    return redirect("/")

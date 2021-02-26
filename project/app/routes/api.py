@@ -30,4 +30,9 @@ def register():
         except Exception as e:
             return(str(e))
 
-
+@app.route('/logout')
+def logout():
+    try:
+        return auth.logout()
+    except Exception as e:
+        return(str(e))
