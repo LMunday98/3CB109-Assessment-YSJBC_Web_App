@@ -1,5 +1,12 @@
 <!-- base.html -->
 
+{% set navigation_bar = [
+  ('/', 'index', 'Home'),
+  ('/about', 'about', 'About'),
+  ('/insert', 'insert', 'Insert')
+] -%}
+{% set active_page = active_page|default('index') -%}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,9 +30,11 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div id="nav-links" class="navbar-nav nav-fill w-90">
-              <a class="nav-link current" href="/">Home</a>
-              <a class="nav-link" href="/about">About</a>
-              <a class="nav-link" href="/insert">Insert</a>
+
+              {% for href, id, caption in navigation_bar %}
+                <a class="nav-link {% if id == active_page %} current {% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
+              {% endfor %}
+              
             </div>
           </div>
       </div>
