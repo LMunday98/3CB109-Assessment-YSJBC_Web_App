@@ -5,6 +5,13 @@
 {% block title %}Insert{% endblock %}
 
 {% block body %}
+
+{% if msg is defined %}
+  <div class="jumbotron">
+    <h1>{{ msg }}</h1>
+  </div>
+{% endif %}
+
 <div class="jumbotron">
   <h1>Insert Data</h1>
   <form action="/login" method = "POST">
