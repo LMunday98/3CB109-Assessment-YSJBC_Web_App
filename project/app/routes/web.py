@@ -39,6 +39,10 @@ def user_register():
 def admin_login():
     return render_template("admin/index.html")
 
-@app.route('/admin/register')
-def admin_register():
-    return render_template("admin/register.html")
+@app.route('/admin/home')
+def admin_home():
+    return render_template("admin/home.html")
+
+@app.route('/admin/blog')
+def admin_blog():
+    return render_template("admin/blog.html")

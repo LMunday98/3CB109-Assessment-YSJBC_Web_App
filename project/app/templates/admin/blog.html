@@ -2,14 +2,15 @@
 
 {% extends "base.html" %}
 
-{% set active_page = "user" %}
-{% block title %}Login{% endblock %}
+{% set admin_nav = True %}
+{% set active_page = "blog" %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
 
 <div class="card">
   <div class="card-body">
-    <h1 class="card-title">User Login</h1>
+    <h1 class="card-title">Admin Login</h1>
 
     {% if msg is defined %}
       <h6 class="card-subtitle mb-2 text-danger">{{ msg }}</h6>
@@ -25,7 +26,6 @@
       <input type="password" class="form-control" name="password" id="password" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <p>Don't have an account? Click <a href="/user/register">here</a> to register!</p>
   </form>
   </div>
 </div>
