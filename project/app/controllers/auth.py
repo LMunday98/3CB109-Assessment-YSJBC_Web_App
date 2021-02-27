@@ -1,4 +1,4 @@
-from app.controllers.db_ops import *
+from app.controllers.user import *
 from flask import render_template, redirect
 
 def login(form_data):
