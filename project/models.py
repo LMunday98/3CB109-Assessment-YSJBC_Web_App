@@ -1,4 +1,5 @@
 from app import db
+from app.models.user import *
 from app.models.dessert import *
 
 if __name__ == "__main__":
