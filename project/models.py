@@ -51,6 +51,6 @@ def create_dessert(new_name, new_price, new_calories):
 if __name__ == "__main__":
 
     # Run this file directly to create the database tables.
-    print "Creating database tables..."
+    print ("Creating database tables...")
     db.create_all()
     print ("Done!")
