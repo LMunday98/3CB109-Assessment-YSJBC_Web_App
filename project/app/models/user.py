@@ -8,10 +8,12 @@ class User(db.Model):
     # User attributes
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    is_admin = db.Column(db.Boolean, unique=False, default=False)
 
-    def __init__(self, email, password):
+    def __init__(self, email, password, is_admin):
         self.email = email
         self.set_password(password)
+        self.is_admin = is_admin
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password)
@@ -19,8 +21,8 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
 
-def create_user(new_email, new_password):
-    user = User(new_email, new_password)
+def create_user(new_email, new_password, is_admin=False):
+    user = User(new_email, new_password, is_admin)
 
     # Actually add this user to the database
     db.session.add(user)
@@ -31,4 +33,5 @@ def create_user(new_email, new_password):
     return user
 
 def get_user(email):
-    user = meta.Session.query(model.User).filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
+    return user

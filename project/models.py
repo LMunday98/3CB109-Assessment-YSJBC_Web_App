@@ -12,7 +12,7 @@ def migration():
 
 def seed():
     print ("Seeding database...")
-    create_user("luke.munday@gmail.com", "LukePass")
+    create_user("luke.munday@gmail.com", "LukePass", True)
     create_user("test@gmail.com", "test")
     print ("Done!")
 
