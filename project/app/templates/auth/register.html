@@ -2,7 +2,7 @@
 
 {% extends "base.html" %}
 
-{% set active_page = "user" %}
+{% set active_page = "auth" %}
 {% block title %}Register{% endblock %}
 
 {% block body %}
@@ -30,7 +30,7 @@
       <input type="password" class="form-control"  name="password_confirm" id="confirm_password" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <p>Already have an account? Click <a href="/user/login">here</a> to sign in!</p>
+    <p>Already have an account? Click <a href="/auth/login">here</a> to sign in!</p>
   </form>
   </div>
 </div>
