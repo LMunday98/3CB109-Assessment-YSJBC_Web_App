@@ -25,24 +25,16 @@ def training():
 def contact():
     return render_template("public/contact.html")
 
-# Define user routes
-@app.route('/user/login')
+# Define auth routes
+@app.route('/auth/login')
 def user_login():
-    return render_template("user/login.html")
+    return render_template("auth/login.html")
 
-@app.route('/user/register')
+@app.route('/auth/register')
 def user_register():
-    return render_template("user/register.html")
+    return render_template("auth/register.html")
 
 # Define admin routes
-@app.route('/admin/login')
-def admin_login():
-    return render_template("admin/login.html")
-
-@app.route('/admin/home')
-def admin_home():
-    return render_template("admin/home.html")
-
 @app.route('/admin/blog')
 def admin_blog():
     return render_template("admin/blog.html")
