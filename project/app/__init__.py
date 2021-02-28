@@ -14,4 +14,5 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Load the config file
 app.config.from_object('config')
 
+# Define app wide db instance
 db = SQLAlchemy(app)

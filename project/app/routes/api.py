@@ -2,7 +2,7 @@
 
 from flask import render_template, request
 
-from models import Dessert, create_dessert
+from models import *
 from app import app
 
 # Import all controllers
