@@ -8,7 +8,7 @@ from app import app
 # Import all controllers
 from app.controllers import *
 
-# Define api calls
+# Define user api calls
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'GET':
@@ -38,7 +38,14 @@ def logout():
     except Exception as e:
         return(str(e))
 
-
+# Define admin api calls
+@app.route('/admin/home')
+def admin_home():
+    try:
+        users = User.query.all()
+        return render_template('admin/home.html', users=users)
+    except Exception as e:
+        return(str(e))
 
 
 
