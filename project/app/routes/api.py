@@ -46,28 +46,3 @@ def admin_home():
         return render_template('admin/home.html', users=users)
     except Exception as e:
         return(str(e))
-
-
-
-
-
-@app.route('/dessert/view')
-def dessert_view():
-    try:
-        desserts = Dessert.query.all()
-        return render_template('dessert.html', desserts=desserts)
-    except Exception as e:
-        return(str(e))
-
-@app.route('/dessert/add', methods=['GET', 'POST'])
-def dessert_add():
-
-    if request.method == 'GET':
-        return render_template('add.html')
-
-    dessert_name = request.form.get('name_field')
-    dessert_price = request.form.get('price_field')
-    dessert_cals = request.form.get('cals_field')
-
-    dessert = create_dessert(dessert_name, dessert_price, dessert_cals)
-    return render_template('add.html', dessert=dessert)
