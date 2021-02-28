@@ -7,12 +7,12 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__, instance_relative_config=True)
 
 # Setup SQL Alchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///desserts.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///desserts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@127.0.0.1/flask'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Import web and api routes before running the app
-# to prevent circular dependencies
-from app.routes import *
+
 
 # Load the config file
 app.config.from_object('config')
