@@ -2,7 +2,6 @@ from app.models.user import *
 from flask import render_template, redirect
 
 def login(form_data):
-    
     email = form_data['email']
     password = form_data['password']
 
@@ -17,19 +16,17 @@ def login(form_data):
     
 
 def register(form_data):
-
     email = form_data['email']
     password = form_data['password']
     confirm_password = form_data['password_confirm']
 
-    if (not (email or password or confirm_password) ):
-        return render_template("auth/register.html", msg="Please fill out all fields!")
-
     if (not (password == confirm_password) ):
         return render_template("auth/register.html", msg="Passwords do not match!")
 
-    #if (user_exist(email)):
-        #return render_template("auth/register.html", msg="User already exists!")
+    user = get_user(email)
+
+    if (user != None):
+        return render_template("auth/register.html", msg="User already exists!")
 
     create_user(email, password)
 
