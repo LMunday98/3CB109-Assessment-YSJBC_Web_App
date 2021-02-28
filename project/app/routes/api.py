@@ -2,6 +2,7 @@
 
 from flask import render_template, request
 
+from app.models import Dessert, create_dessert
 from app import app
 
 # Import all controllers
@@ -34,5 +35,13 @@ def register():
 def logout():
     try:
         return auth.logout()
+    except Exception as e:
+        return(str(e))
+
+@app.route('/dessert/view')
+def dessert_view():
+    try:
+        desserts = Dessert.query.all()
+        return render_template('dessert.html', desserts=desserts)
     except Exception as e:
         return(str(e))
