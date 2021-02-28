@@ -10,9 +10,8 @@ app = Flask(__name__, instance_relative_config=True)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///desserts.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@127.0.0.1/flask'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-
 
 # Load the config file
 app.config.from_object('config')
+
+db = SQLAlchemy(app)
