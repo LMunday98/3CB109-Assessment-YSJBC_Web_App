@@ -2,6 +2,7 @@
 
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 # Initialize the app
 app = Flask(__name__, instance_relative_config=True)
@@ -16,3 +17,6 @@ app.config.from_object('config')
 
 # Define app wide db instance
 db = SQLAlchemy(app)
+
+# Define bcrypt
+bcrypt = Bcrypt(app)
