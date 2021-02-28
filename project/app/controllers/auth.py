@@ -1,4 +1,4 @@
-from app.controllers.user import *
+from app.models.user import *
 from flask import render_template, redirect
 
 def login(form_data):
@@ -35,18 +35,12 @@ def register(form_data):
     if (not (password == confirm_password) ):
         return render_template("user/register.html", msg="Passwords do not match!")
 
-    if (user_exist(email)):
-        return render_template("user/register.html", msg="User already exists!")
+    #if (user_exist(email)):
+        #return render_template("user/register.html", msg="User already exists!")
 
-    table = "users"
-    fields = "user_email,user_password"
-    data_types = "%s,%s"
-    content = [email, password]
+    create_user(email, password)
 
-    data = [table, fields, data_types, content]
-    insert(data)
-
-    return render_template("user/login.html", msg="User account successfully created!")
+    return render_template("admin/home.html", msg="User account successfully created!")
 
 def logout():
     # logout stuff

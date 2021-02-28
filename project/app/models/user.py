@@ -29,3 +29,6 @@ def create_user(new_email, new_password):
     db.session.commit()
 
     return user
+
+def get_user(email):
+    user = meta.Session.query(model.User).filter_by(email=email).first()
