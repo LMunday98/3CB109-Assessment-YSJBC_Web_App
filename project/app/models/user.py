@@ -24,7 +24,7 @@ class User(db.Model):
 def create_user(new_email, new_password, account_type="User"):
     user = User(new_email, new_password, account_type)
 
-    # Actually add this user to the database
+    # Actually add user to the database
     db.session.add(user)
 
     # Save all pending changes to the database

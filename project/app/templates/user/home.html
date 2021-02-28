@@ -1,0 +1,26 @@
+<!-- form.html-->
+
+{% extends "base.html" %}
+
+{% set admin_nav = True %}
+{% set active_page = "home" %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">User Home</h1>
+        <p class="card-text">You can learn more about my website here.</p>
+
+        {{ msg }}
+
+        <ul>
+          {% for user in users %}
+              <li>{{ user.id }} - {{ user.email }}, {{ user.password_hash }}
+          {% endfor %}
+        </ul>
+
+    </div>
+  </div>
+{% endblock %}
+
