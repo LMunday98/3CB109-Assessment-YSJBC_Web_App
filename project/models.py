@@ -1,6 +1,5 @@
 from app import db
-from app.models.user import *
-from app.models.blog import *
+from app.models import *
 
 def migration():
     # Clean migration of db
