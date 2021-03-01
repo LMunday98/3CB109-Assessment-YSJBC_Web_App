@@ -30,51 +30,91 @@
     <title>YSJBC - {% block title %}{% endblock %}</title>
     <!-- facicon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/ysj.svg') }}">
+    <!-- Add relative header content -->
+    {% block header %}
+    {% endblock %}
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- Font aswesome icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <!-- Import main custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
-    <!-- Add relative header content -->
-    {% block header %}
-    {% endblock %}
-    <style>
-    </style>
   </head>
-  <body>
-    <nav id="nav" class="navbar navbar-expand-lg navbar-light w-100">
-      <div class="container-fluid">
-          <a id="nav-logo" class="navbar-brand" href="/">
-              <img src="{{ url_for('static', filename='assets/images/logo.jpg') }}" alt="" width="auto" height="48">
-              YSJ Boat Club
-          </a>  
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-            <div id="nav-links" class="navbar-nav nav-fill w-90">
+  <body class="is-preload homepage">
+    <div id="page-wrapper">
 
-              {% for href, id, caption in navigation_bar %}
-                <a class="nav-link {% if id == active_page %} current {% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
-              {% endfor %}
-              
+      <!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+
+						<!-- Logo -->
+            <!--
+							<div id="logo">
+								<h1><a href="index.html">Verti</a></h1>
+								<span>by HTML5 UP</span>
+							</div>
+              -->
+						<!-- Nav -->
+            <!--
+							<nav id="nav">
+								<ul>
+									<li class="current"><a href="index.html">Welcome</a></li>
+									<li>
+										<a href="#">Dropdown</a>
+										<ul>
+											<li><a href="#">Lorem ipsum dolor</a></li>
+											<li><a href="#">Magna phasellus</a></li>
+											<li>
+												<a href="#">Phasellus consequat</a>
+												<ul>
+													<li><a href="#">Lorem ipsum dolor</a></li>
+													<li><a href="#">Phasellus consequat</a></li>
+													<li><a href="#">Magna phasellus</a></li>
+													<li><a href="#">Etiam dolore nisl</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Veroeros feugiat</a></li>
+										</ul>
+									</li>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="no-sidebar.html">No Sidebar</a></li>
+								</ul>
+							</nav>
+-->
+					</header>
+				</div>
+
+      <nav id="nav" class="navbar navbar-expand-lg navbar-light w-100" style="margin-bottom: 5em;">
+        <div class="container-fluid">
+            <a id="nav-logo" class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='assets/images/logo.jpg') }}" alt="" width="auto" height="48">
+                YSJ Boat Club
+            </a>  
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+              <div id="nav-links" class="navbar-nav nav-fill w-90">
+
+                {% for href, id, caption in navigation_bar %}
+                  <a class="nav-link {% if id == active_page %} current {% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
+                {% endfor %}
+                
+              </div>
             </div>
-          </div>
-      </div>
-    </nav>
-    <div class="container">
-      
-      {% block body %}
-      {% endblock %}
+        </div>
+      </nav>
+        
+        {% block body %}
+        {% endblock %}
 
-      <footer class="footer">
-        <p>© 2021 Luke Munday</p>
-      </footer>
+        <footer class="footer">
+          <p>© 2021 Luke Munday</p>
+        </footer>
 
-    </div> <!-- /container -->
-
-    <!-- Bootstrap JS plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+      <!-- Bootstrap JS plugins -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    </div>
   </body>
 </html>

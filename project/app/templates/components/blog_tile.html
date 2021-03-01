@@ -1,10 +1,16 @@
 {% macro create_blog_tile(blog) %}
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{ blog.title }}</h5>
-        <h6 class="card-subtitle">{{ blog.updated_at }}</h6>
-        <p class="card-text">{{ blog.desc }}</p>
-        <a href="blog/{{ blog.id }}" class="card-link">View post</a>
-    </div>
-</div>
+<div class="col-4 col-12-medium">
+    <!-- Box -->
+      <section class="box feature">
+        <a href="blog/{{ blog.id }}" class="image featured"><img src="{{ url_for('static', filename='assets/images/blog_tiles/pic01.jpg') }}" alt="" /></a>
+        <div class="inner">
+          <header>
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.updated_at }}</p>
+          </header>
+          <p>{{ blog.desc }}</p>
+        </div>
+      </section>
+
+  </div>
 {% endmacro %}

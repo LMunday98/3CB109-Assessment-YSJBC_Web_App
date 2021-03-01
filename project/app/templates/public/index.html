@@ -7,6 +7,7 @@
 
 {% block header %}
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/home.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/template.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -35,10 +36,19 @@
   </div>
 
   <!-- Recent blogs -->
-  {% from "components/blog_tile.html" import create_blog_tile with context %}
+  <div id="features-wrapper">
+    <div class="container">
+      <div class="row">
+        
+        {% from "components/blog_tile.html" import create_blog_tile with context %}
 
-  {% for blog in recent_blogs %}
-    {{ create_blog_tile(blog) }}
-  {% endfor %}
+        {% for blog in recent_blogs %}
+          {{ create_blog_tile(blog) }}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
 
 {% endblock %}
