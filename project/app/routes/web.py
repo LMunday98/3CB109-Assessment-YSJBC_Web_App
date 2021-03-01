@@ -5,10 +5,11 @@ from flask import render_template
 from models import *
 from app import app
 
-# Define user routes
+# Define public routes
 @app.route('/')
 def index():
-    return render_template("public/index.html")
+    recent_blogs = Blog.query.order_by(Blog.updated_at.desc()).limit(3).all()
+    return render_template("public/index.html", recent_blogs=recent_blogs)
 
 @app.route('/about')
 def about():
