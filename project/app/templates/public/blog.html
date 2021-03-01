@@ -6,23 +6,33 @@
 {% block title %}Blog{% endblock %}
 
 {% block body %}
-<div class="card">
-  <div class="card-body">
-    <h1 class="card-title">The Blog Page</h1>
-    <p class="card-text">You can learn more about my website here.</p>
-  </div>
-</div>
 
-{% for blog in blogs %}
+
+
+{% if blog is defined %}
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">{{ blog.title }} {{ blog.id }}</h5>
-      <h6 class="card-subtitle">{{ blog.desc }} {{ blog.id }}</h6>
       <p class="card-text">{{ blog.body }} {{ blog.id }}</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
     </div>
   </div>
-{% endfor %}
+{% else %}
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">The Blog Page</h1>
+      <p class="card-text">You can learn more about my website here.</p>
+    </div>
+  </div>
+  {% for blog in blogs %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ blog.title }} {{ blog.id }}</h5>
+        <h6 class="card-subtitle">{{ blog.desc }} {{ blog.id }}</h6>
+        <p class="card-text">{{ blog.body }} {{ blog.id }}</p>
+        <a href="blog/{{ blog.id }}" class="card-link">View post</a>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
 
 {% endblock %}
