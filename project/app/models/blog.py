@@ -2,6 +2,8 @@ from app import db
 import datetime
 
 class Blog(db.Model):
+    db.metadata.clear()
+
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
 
@@ -33,3 +35,10 @@ class Blog(db.Model):
         db.session.commit()
 
         return blog
+
+    @classmethod
+    def seed(cls, fake):
+        title = fake.sentence()
+        desc = fake.sentence()
+        body = fake.text()
+        cls.create_blog(title, desc, body)

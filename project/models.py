@@ -1,5 +1,6 @@
 from app import db
 from app.models import *
+from faker import Faker
 
 def migration():
     # Clean migration of db
@@ -11,12 +12,17 @@ def migration():
     print ("Done!")
 
 def seed():
-    print ("Seeding database...")
+    print ("Seeding tables...")
     User.create_user("luke.munday@gmail.com", "LukePass", "Admin")
     User.create_user("test@gmail.com", "test")
-    Blog.create_blog("Title", "Desc", "Body")
-    Blog.create_blog("Title", "Desc", "Body")
-    Blog.create_blog("Title", "Desc", "Body")
+
+    fake = Faker()
+    for _ in range(10):
+        User.seed(fake)
+
+    for _ in range(6):
+        Blog.seed(fake)
+
     print ("Done!")
 
 if __name__ == "__main__":
