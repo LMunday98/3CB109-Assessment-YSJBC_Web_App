@@ -2,6 +2,7 @@
 
 from flask import render_template
 
+from models import *
 from app import app
 
 # Define user routes
@@ -15,7 +16,8 @@ def about():
 
 @app.route('/blog')
 def blog():
-    return render_template("public/blog.html")
+    blogs = Blog.query.all()
+    return render_template('public/blog.html', blogs=blogs)
 
 @app.route('/training')
 def training():

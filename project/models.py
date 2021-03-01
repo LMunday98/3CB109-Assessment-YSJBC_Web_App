@@ -16,6 +16,8 @@ def seed():
     create_user("luke.munday@gmail.com", "LukePass", "Admin")
     create_user("test@gmail.com", "test")
     create_blog("Title", "Desc", "Body")
+    create_blog("Title", "Desc", "Body")
+    create_blog("Title", "Desc", "Body")
     print ("Done!")
 
 if __name__ == "__main__":

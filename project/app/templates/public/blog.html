@@ -12,4 +12,15 @@
     <p class="card-text">You can learn more about my website here.</p>
   </div>
 </div>
+
+{% for blog in blogs %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ blog.title }} {{ blog.id }}</h5>
+      <h6 class="card-subtitle">{{ blog.desc }} {{ blog.id }}</h6>
+      <p class="card-text">{{ blog.body }} {{ blog.id }}</p>
+    </div>
+  </div>
+{% endfor %}
+
 {% endblock %}
