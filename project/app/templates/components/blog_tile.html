@@ -1,9 +1,9 @@
 {% macro create_blog_tile(blog) %}
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">{{ blog.title }} {{ blog.id }}</h5>
-        <h6 class="card-subtitle">{{ blog.desc }} {{ blog.id }}</h6>
-        <p class="card-text">{{ blog.body }} {{ blog.id }}</p>
+        <h5 class="card-title">{{ blog.title }}</h5>
+        <h6 class="card-subtitle">{{ blog.updated_at }}</h6>
+        <p class="card-text">{{ blog.desc }}</p>
         <a href="blog/{{ blog.id }}" class="card-link">View post</a>
     </div>
 </div>

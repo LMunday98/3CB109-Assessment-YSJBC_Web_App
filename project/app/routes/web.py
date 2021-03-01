@@ -18,9 +18,9 @@ def about():
 @app.route('/blog')
 @app.route('/blog/<id>')
 def blog(id=None):
-    if (id != None):
+    blog = Blog.get_blog(id)
+    if (blog != None):
         # Get specific blog
-        blog = Blog.get_blog(id)
         return render_template('public/blog.html', blog=blog)
     else:
         # Display all
