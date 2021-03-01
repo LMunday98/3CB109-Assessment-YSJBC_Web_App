@@ -16,18 +16,33 @@
       </div>
     </div>
   {% else %}
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title">The Blog Page</h1>
-        <p class="card-text">You can learn more about my website here.</p>
+  {% from "components/blog_tile.html" import create_blog_tile with context %}
+
+  <div class="header-wrapper">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">The Blog Page</h1>
+          <p class="card-text">You can learn more about my website here.</p>
+        </div>
       </div>
     </div>
-    {% from "components/blog_tile.html" import create_blog_tile with context %}
+  </div>
 
-    {% for blog in blogs %}
-      {{ create_blog_tile(blog) }}
-    {% endfor %}
-    
+    <!-- All blogs -->
+    <div id="features-wrapper">
+      <div class="container">
+
+        {% for blog_row in blogs | batch(3, '&nbsp;') %}
+        <div class="row">
+          {% for blog in blog_row %}
+            {{ create_blog_tile(blog) }}
+          {% endfor %}
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
   {% endif %}
 
 {% endblock %}
