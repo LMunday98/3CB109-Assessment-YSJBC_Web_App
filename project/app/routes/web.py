@@ -15,9 +15,17 @@ def about():
     return render_template("public/about.html")
 
 @app.route('/blog')
-def blog():
-    blogs = Blog.query.all()
-    return render_template('public/blog.html', blogs=blogs)
+@app.route('/blog/<id>')
+def blog(id=None):
+    if (id != None):
+        # Get specific blog
+        blog = Blog.get_blog(id)
+        return render_template('public/blog.html', blog=blog)
+    else:
+        # Display all
+        blogs = Blog.query.all()
+        return render_template('public/blog.html', blogs=blogs)
+    
 
 @app.route('/training')
 def training():

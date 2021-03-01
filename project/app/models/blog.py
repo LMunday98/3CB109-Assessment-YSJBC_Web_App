@@ -19,17 +19,17 @@ class Blog(db.Model):
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
 
-def create_blog(title, desc, body):
-    blog = Blog(title, desc, body)
+    def get_blog(id):
+        blog = Blog.query.filter_by(id=id).first()
+        return blog
+    
+    def create_blog(title, desc, body):
+        blog = Blog(title, desc, body)
 
-    # Actually add user to the database
-    db.session.add(blog)
+        # Actually add user to the database
+        db.session.add(blog)
 
-    # Save all pending changes to the database
-    db.session.commit()
+        # Save all pending changes to the database
+        db.session.commit()
 
-    return blog
-
-def get_blog(id):
-    blog = Blog.query.filter_by(id=id).first()
-    return blog
+        return blog
