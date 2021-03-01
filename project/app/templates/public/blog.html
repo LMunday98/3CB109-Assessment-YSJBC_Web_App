@@ -7,39 +7,27 @@
 
 {% block body %}
 
-
-
-{% from "components/blog_tile.html" import create_blog_tile with context %}
-
-
-
-{% if blog is defined %}
-  <a href="/blog" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{ blog.title }} {{ blog.id }}</h5>
-      <p class="card-text">{{ blog.body }} {{ blog.id }}</p>
-    </div>
-  </div>
-{% else %}
-  <div class="card">
-    <div class="card-body">
-      <h1 class="card-title">The Blog Page</h1>
-      <p class="card-text">You can learn more about my website here.</p>
-    </div>
-  </div>
-  {% for blog in blogs %}
+  {% if blog is defined %}
+    <a href="/blog" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{ blog.title }} {{ blog.id }}</h5>
-        <h6 class="card-subtitle">{{ blog.desc }} {{ blog.id }}</h6>
         <p class="card-text">{{ blog.body }} {{ blog.id }}</p>
-        <a href="blog/{{ blog.id }}" class="card-link">View post</a>
       </div>
     </div>
+  {% else %}
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">The Blog Page</h1>
+        <p class="card-text">You can learn more about my website here.</p>
+      </div>
+    </div>
+    {% from "components/blog_tile.html" import create_blog_tile with context %}
 
-    {{ create_blog_tile(blog) }}
-  {% endfor %}
-{% endif %}
+    {% for blog in blogs %}
+      {{ create_blog_tile(blog) }}
+    {% endfor %}
+    
+  {% endif %}
 
 {% endblock %}
