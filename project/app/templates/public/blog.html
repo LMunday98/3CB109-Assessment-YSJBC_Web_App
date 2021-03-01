@@ -9,6 +9,10 @@
 
 
 
+{% from "components/blog_tile.html" import create_blog_tile with context %}
+
+
+
 {% if blog is defined %}
   <a href="/blog" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
   <div class="card">
@@ -33,6 +37,8 @@
         <a href="blog/{{ blog.id }}" class="card-link">View post</a>
       </div>
     </div>
+
+    {{ create_blog_tile(blog) }}
   {% endfor %}
 {% endif %}
 
