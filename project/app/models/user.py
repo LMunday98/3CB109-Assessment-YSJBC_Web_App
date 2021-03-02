@@ -3,7 +3,7 @@ from app import bcrypt
 
 class User(db.Model):
     __tablename__ = 'users'
-    db.metadata.clear()
+    __table_args__ = {'extend_existing': True}
 
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
@@ -25,7 +25,7 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
 
-    def create_user(new_email, new_password, account_type="User"):
+    def create(new_email, new_password, account_type="User"):
         user = User(new_email, new_password, account_type)
 
         # Actually add user to the database
@@ -36,11 +36,11 @@ class User(db.Model):
 
         return user
 
-    def get_user(email):
+    def get(email):
         user = User.query.filter_by(email=email).first()
         return user
 
     @classmethod
     def seed(cls, fake):
         email = fake.email()
-        cls.create_user(email, email)
+        cls.create(email, email)

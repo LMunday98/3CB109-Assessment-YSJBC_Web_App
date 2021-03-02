@@ -31,15 +31,8 @@
   <!-- Recent blogs -->
   <div id="features-wrapper">
     <div class="container">
-      <div class="row">
-        
-        {% from "components/blog_tile.html" import create_blog_tile with context %}
-
-        {% for blog in recent_blogs %}
-          {{ create_blog_tile(blog) }}
-        {% endfor %}
-
-      </div>
+      {% from "components/blog_rows.html" import create_blog_rows with context %}
+      {{ create_blog_rows(recent_blogs) }}
     </div>
   </div>
 
