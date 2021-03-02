@@ -37,7 +37,7 @@ def get(id, route, action="ViewAll"):
             return render_template(url, blog=blog, action=action)
         else:
             # Display all
-            blogs = Blog.get_all()
+            blogs = Blog.query.order_by(Blog.updated_at.desc()).all()
             return render_template(url, blogs=blogs, action="ViewAll")
     except Exception as e:
         return(str(e))
