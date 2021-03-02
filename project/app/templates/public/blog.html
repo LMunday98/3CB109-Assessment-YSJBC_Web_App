@@ -8,13 +8,10 @@
 {% block body %}
 
   {% if blog is defined %}
-    <a href="/blog" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ blog.title }}</h5>
-        <p class="card-text">{{ blog.body }}</p>
-      </div>
-    </div>
+
+    {% from "components/blog_view.html" import create_blog_view with context %}
+    {{ create_blog_view(blog) }}
+    
   {% else %}
   
     <!-- All blogs -->
