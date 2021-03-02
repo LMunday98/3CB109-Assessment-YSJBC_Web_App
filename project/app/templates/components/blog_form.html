@@ -1,0 +1,42 @@
+{% macro create_blog_form(blog) %}
+
+    <a href="{{ get_nav_link() }}" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
+
+    <form action="/blog/update" method="POST" name="blog_form" id="blog_form">
+        <input type="text" class="form-control" name="id" id="id" value="{{ get_val(blog.id) }}" style="display: none;">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" id="title" value="{{ get_val(blog.title) }}">
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Desc</label>
+          <input type="text" class="form-control" name="desc" id="desc" value="{{ get_val(blog.desc) }}">
+        </div>
+        <div class="mb-3">
+          <label for="body" class="form-label">Body</label>
+          <textarea id="body" name="body" form="blog_form">{{ get_val(blog.body) }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+{% endmacro %}
+
+{% macro get_val(value) %}
+{% if action == "Edit" %}
+{{ value }}
+{% endif %}
+{% endmacro %}
+
+{% macro get_nav_link() %}
+  {% if admin_nav == True %}
+      /admin/blog
+  {% endif %}
+{% endmacro %}
+
+{% macro get_form_action() %}
+  {% if action == "Edit" %}
+      /blog/update
+  {% else %}
+      /blog/create
+  {% endif %}
+{% endmacro %}
