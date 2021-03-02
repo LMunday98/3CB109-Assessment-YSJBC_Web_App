@@ -3,7 +3,7 @@ from app import bcrypt
 
 class User(db.Model):
     __tablename__ = 'users'
-    db.metadata.clear()
+    __table_args__ = {'extend_existing': True}
 
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)

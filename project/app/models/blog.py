@@ -2,7 +2,8 @@ from app import db
 import datetime
 
 class Blog(db.Model):
-    db.metadata.clear()
+    __tablename__ = 'blogs'
+    __table_args__ = {'extend_existing': True}
 
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
@@ -36,10 +37,10 @@ class Blog(db.Model):
 
         return blog
 
-    def delete_blog(id):
-        blog = Blog.query.filter_by(id=id).first()
-        db.session.delete(blog)
-        db.session.commit()
+    #def delete_blog(id):
+        #blog = Blog.query.filter_by(id=id).first()
+        #db.session.delete(blog)
+        #db.session.commit()
 
     @classmethod
     def seed(cls, fake):
