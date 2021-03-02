@@ -1,11 +1,15 @@
 from app.models.blog import *
 from flask import render_template, redirect
 
-def create(form_data):
-    new_title = form_data['title']
-    new_desc = form_data['desc']
-    new_body = form_data['body']
-    Blog.create(new_title, new_desc, new_body)
+def create(method, form_data):
+    if method == 'POST':
+        try:
+            new_title = form_data['title']
+            new_desc = form_data['desc']
+            new_body = form_data['body']
+            Blog.create(new_title, new_desc, new_body)
+        except Exception as e:
+            return(str(e))
 
     return redirect('/admin/blog')
 
