@@ -1,5 +1,11 @@
 {% macro create_blog_tile(blog) %}
 
+<style>
+  .blog-tile-btn {
+    max-width: 80%;
+    text-align: center;
+  }
+</style>
 
 <div class="col-4 col-12-medium">
     <!-- Box -->
@@ -11,11 +17,16 @@
             <p>{{ blog.updated_at }}</p>
           </header>
           <p>{{ blog.desc }}</p>
-          {{ image_ref }}
+          <div class="row">
+            <a class="button col-4 blog-tile-btn btn-success">View</a>
+            <a class="button col-4 blog-tile-btn">Edit</a>
+            <a class="button col-4 blog-tile-btn btn-danger">Delete</a>
+          </div>
         </div>
       </section>
 
   </div>
+
 {% endmacro %}
 
 {% macro get_image_ref(id) %}
