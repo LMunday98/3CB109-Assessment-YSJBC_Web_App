@@ -1,6 +1,6 @@
 # web_routes.py
 
-from flask import render_template
+from flask import render_template, request, redirect
 
 from models import *
 from app import app
@@ -61,3 +61,25 @@ def admin_blog(id=None):
         # Display all
         blogs = Blog.query.all()
         return render_template('admin/blog.html', blogs=blogs)
+
+@app.route('/admin/blog/edit')
+@app.route('/admin/blog/edit/<id>')
+def admin_blog_edit(id=None):
+    blog = Blog.get_blog(id)
+    if (blog != None):
+        # Get specific blog
+        return render_template('admin/blog.html', blog=blog, action="Edit")
+    else:
+        # Return to all blogs
+        blogs = Blog.query.all()
+        return render_template('admin/blog.html', blogs=blogs)
+
+@app.route('/admin/blog/delete', methods = ['POST', 'GET'])
+def admin_blog_delete():
+    if ((request.method == 'POST')) :
+        try:
+            Blog.delete_blog(request.form['delete_id'])
+        except Exception as e:
+            return(str(e))
+
+    return redirect('/admin/blog')

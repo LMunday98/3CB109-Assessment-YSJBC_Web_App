@@ -7,7 +7,7 @@
 
     {% for blog_row in blogs | batch(3, '&nbsp;') %}
         <div class="row">
-            {% for blog in blog_row %}
+            {% for blog in blog_row if blog.id %}
                 {{ create_blog_tile(blog) }}
             {% endfor %}
         </div>

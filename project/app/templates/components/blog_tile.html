@@ -35,6 +35,7 @@
     <form action="/admin/blog/delete" method="POST" class="action-form row justify-content-center w-100">
       <a href="/admin/blog/{{ id }}" class="col-4"><button type="button" class="btn btn-success w-100">View</button></a>
       <a href="/admin/blog/edit/{{ id }}" class="col-4"><button type="button" class="btn btn-primary w-100">Edit</button></a>
+      <input type="text" style="display: none;"" name="delete_id" id="delete_id" value="{{ id }}">
       <a class="col-4"><button type="submit" class="btn btn-danger w-100">Delete</button></a>
     </form>
   {% endif %}
