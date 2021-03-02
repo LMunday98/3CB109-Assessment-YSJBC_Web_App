@@ -17,16 +17,22 @@
             <p>{{ blog.updated_at }}</p>
           </header>
           <p>{{ blog.desc }}</p>
-          <div class="row">
-            <a class="button col-4 blog-tile-btn btn-success">View</a>
-            <a class="button col-4 blog-tile-btn">Edit</a>
-            <a class="button col-4 blog-tile-btn btn-danger">Delete</a>
-          </div>
+          {{ admin_actions(blog) }}
         </div>
       </section>
 
   </div>
 
+{% endmacro %}
+
+{% macro admin_actions(blog) %}
+  {% if admin_nav == True %}
+    <div class="row">
+      <a href="/admin/blog/{{ blog.id }}" class="button col-4 blog-tile-btn btn-success">View</a>
+      <a href="/admin/blog/edit/{{ blog.id }}" class="button col-4 blog-tile-btn">Edit</a>
+      <a class="button col-4 blog-tile-btn btn-danger">Delete</a>
+    </div>
+  {% endif %}
 {% endmacro %}
 
 {% macro get_image_ref(id) %}
