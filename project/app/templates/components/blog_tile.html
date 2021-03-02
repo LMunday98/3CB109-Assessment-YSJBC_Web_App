@@ -32,10 +32,10 @@
 
 {% macro admin_actions(id) %}
   {% if admin_nav == True %}
-    <form action="" method="POST" class="action-form row justify-content-center w-100">
-      <a href="/admin/blog/{{ id }}" class="col-4"><button class="btn btn-success w-100">View</button></a>
-      <a href="/admin/blog/edit/{{ id }}" class="col-4"><button class="btn btn-primary w-100">Edit</button></a>
-      <a class="col-4"><button class="btn btn-danger w-100">Delete</button></a>
+    <form action="/admin/blog/delete" method="POST" class="action-form row justify-content-center w-100">
+      <a href="/admin/blog/{{ id }}" class="col-4"><button type="button" class="btn btn-success w-100">View</button></a>
+      <a href="/admin/blog/edit/{{ id }}" class="col-4"><button type="button" class="btn btn-primary w-100">Edit</button></a>
+      <a class="col-4"><button type="submit" class="btn btn-danger w-100">Delete</button></a>
     </form>
   {% endif %}
 {% endmacro %}
