@@ -25,7 +25,7 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
 
-    def create_user(new_email, new_password, account_type="User"):
+    def create(new_email, new_password, account_type="User"):
         user = User(new_email, new_password, account_type)
 
         # Actually add user to the database
@@ -36,7 +36,7 @@ class User(db.Model):
 
         return user
 
-    def get_user(email):
+    def get(email):
         user = User.query.filter_by(email=email).first()
         return user
 

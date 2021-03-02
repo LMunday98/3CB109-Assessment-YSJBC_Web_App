@@ -20,32 +20,15 @@ def blog_view_one(id=None):
 # Define auth api calls
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
-    if request.method == 'GET':
-        return render_template('auth/login.html')
-     
-    if request.method == 'POST':
-        try:
-            return auth_controller.login(request.form)
-        except Exception as e:
-            return(str(e))
-
+    return auth_controller.login(request.method, request.form)
+        
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
-    if request.method == 'GET':
-        return render_template('auth/register.html')
-     
-    if request.method == 'POST':
-        try:
-            return auth_controller.register(request.form)
-        except Exception as e:
-            return(str(e))
+    return auth_controller.register(request.form)
 
 @app.route('/logout')
 def logout():
-    try:
-        return auth_controller.logout()
-    except Exception as e:
-        return(str(e))
+    return auth_controller.logout()
 
 # Define admin api calls
 @app.route('/admin/blog')
