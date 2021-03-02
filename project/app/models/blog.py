@@ -37,6 +37,13 @@ class Blog(db.Model):
 
         return blog
 
+    def update_blog(self, title, desc, body):
+        self.title = title
+        self.desc = desc
+        self.body = body
+        self.updated_at = datetime.datetime.now()
+        db.session.commit()
+
     def delete_blog(id):
         blog = Blog.query.filter_by(id=id).first()
         db.session.delete(blog)

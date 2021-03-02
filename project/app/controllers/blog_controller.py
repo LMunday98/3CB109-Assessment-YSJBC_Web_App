@@ -2,12 +2,12 @@ from app.models.blog import *
 from flask import render_template, redirect
 
 def update(form_data):
-    title = form_data['title']
-    desc = form_data['desc']
-    body = form_data['body']
+    id = form_data['id']
+    new_title = form_data['title']
+    new_desc = form_data['desc']
+    new_body = form_data['body']
 
-    print ("Title: " + title + "\n")
-    print ("Desc: " + desc + "\n")
-    print ("Body: " + body + "\n")
+    current_blog = Blog.get_blog(id)
+    current_blog.update_blog(new_title, new_desc, new_body)
 
     return redirect('/admin/blog')

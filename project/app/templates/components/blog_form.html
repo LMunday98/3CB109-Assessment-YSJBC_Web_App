@@ -3,6 +3,7 @@
     <a href="" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
 
     <form action="/blog/update" method="POST" name="blog_form" id="blog_form">
+        <input type="text" class="form-control" name="id" id="id" value="{{ blog.id }}" style="display: none;">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input type="text" class="form-control" name="title" id="title" value="{{ blog.title }}">
