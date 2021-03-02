@@ -43,4 +43,4 @@ class User(db.Model):
     @classmethod
     def seed(cls, fake):
         email = fake.email()
-        cls.create_user(email, email)
+        cls.create(email, email)
