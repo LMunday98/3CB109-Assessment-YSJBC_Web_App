@@ -2,7 +2,7 @@ from app.models.user import *
 from flask import render_template, redirect
 
 def login(method, form_data):
-    if request.method == 'POST':
+    if method == 'POST':
         try:
             email = form_data['email']
             password = form_data['password']
@@ -20,7 +20,7 @@ def login(method, form_data):
     return render_template('auth/login.html')
 
 def register(method, form_data):
-    if request.method == 'POST':
+    if method == 'POST':
         try:
             email = form_data['email']
             password = form_data['password']
