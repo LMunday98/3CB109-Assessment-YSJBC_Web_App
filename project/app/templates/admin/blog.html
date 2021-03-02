@@ -8,6 +8,7 @@
 
 {% block body %}
 
+<div id="features-wrapper">
   <div class="container">
 
     {% if action == "ViewAll" %}
@@ -39,7 +40,7 @@
       {{ create_blog_form(blog) }}
     {% endif %}
 
+    </div>
   </div>
-  
 {% endblock %}
 
