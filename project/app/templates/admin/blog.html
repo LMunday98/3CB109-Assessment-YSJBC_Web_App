@@ -31,7 +31,7 @@
 
       {% if action == "Edit" %}
         {% from "components/blog_form.html" import create_blog_form with context %}
-        {{ create_blog_view(blog) }}
+        {{ create_blog_form(blog) }}
       {% endif %}
 
     </div>
