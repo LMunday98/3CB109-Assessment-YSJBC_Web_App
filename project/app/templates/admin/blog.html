@@ -7,10 +7,19 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<div class="card">
+  <div class="card">
     <div class="card-body">
       <h1 class="card-title">Admin Blog</h1>
       <p class="card-text">You can learn more about my website here.</p>
+    </div>
+  </div>
+
+  <div id="features-wrapper">
+    <div class="container">
+
+      {% from "components/blog_rows.html" import create_blog_rows with context %}
+      {{ create_blog_rows(blogs) }}
+
     </div>
   </div>
 {% endblock %}
