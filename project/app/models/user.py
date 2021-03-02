@@ -2,6 +2,9 @@ from app import db
 from app import bcrypt
 
 class User(db.Model):
+    __tablename__ = 'users'
+    __table_args__ = {'extend_existing': True}
+
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
 
@@ -12,26 +15,32 @@ class User(db.Model):
 
     def __init__(self, email, password, account_type):
         self.email = email
-        self.set_password(password)
+        self.password_hash = self.hash_password(password)
         self.account_type = account_type
 
-    def set_password(self, password):
-        self.password_hash = bcrypt.generate_password_hash(password)
+    @staticmethod
+    def hash_password(password):
+        return bcrypt.generate_password_hash(password)
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
 
-def create_user(new_email, new_password, account_type="User"):
-    user = User(new_email, new_password, account_type)
+    def create(new_email, new_password, account_type="User"):
+        user = User(new_email, new_password, account_type)
 
-    # Actually add user to the database
-    db.session.add(user)
+        # Actually add user to the database
+        db.session.add(user)
 
-    # Save all pending changes to the database
-    db.session.commit()
+        # Save all pending changes to the database
+        db.session.commit()
 
-    return user
+        return user
 
-def get_user(email):
-    user = User.query.filter_by(email=email).first()
-    return user
+    def get(email):
+        user = User.query.filter_by(email=email).first()
+        return user
+
+    @classmethod
+    def seed(cls, fake):
+        email = fake.email()
+        cls.create(email, email)

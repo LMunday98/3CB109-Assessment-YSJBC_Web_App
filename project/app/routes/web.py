@@ -1,21 +1,19 @@
 # web_routes.py
 
-from flask import render_template
+from flask import render_template, request, redirect
 
+from models import *
 from app import app
 
-# Define user routes
+# Define public routes
 @app.route('/')
 def index():
-    return render_template("public/index.html")
+    recent_blogs = Blog.query.order_by(Blog.updated_at.desc()).limit(3).all()
+    return render_template("public/index.html", recent_blogs=recent_blogs)
 
 @app.route('/about')
 def about():
     return render_template("public/about.html")
-
-@app.route('/blog')
-def blog():
-    return render_template("public/blog.html")
 
 @app.route('/training')
 def training():
@@ -35,6 +33,6 @@ def user_register():
     return render_template("auth/register.html")
 
 # Define admin routes
-@app.route('/admin/blog')
-def admin_blog():
-    return render_template("admin/blog.html")
+@app.route('/admin/home')
+def admin_home():
+    return render_template('admin/home.html')

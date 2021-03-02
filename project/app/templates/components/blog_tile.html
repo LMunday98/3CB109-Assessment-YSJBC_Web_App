@@ -1,0 +1,54 @@
+{% macro create_blog_tile(blog) %}
+
+<div class="col-4 col-12-medium">
+    <!-- Box -->
+      <section class="box feature">
+        <a href="{{ get_nav_link(blog.id) }}" class="image featured"><img src="{{ get_image_ref(blog.id) }}" alt="" /></a>
+        <div class="inner">
+          <header>
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.updated_at }}</p>
+          </header>
+          <p>{{ blog.desc }}</p>
+          {{ admin_actions(blog.id) }}
+        </div>
+      </section>
+
+  </div>
+
+{% endmacro %}
+
+{% macro get_action_css() %}
+  <style>
+    .action-form {
+      padding: 0;
+      margin: 2em 0em -1em 0em;
+    }
+    .action-form a {
+      padding: 0;
+    }
+  </style>
+{% endmacro %}
+
+{% macro admin_actions(id) %}
+  {% if admin_nav == True %}
+    <form action="/admin/blog/delete" method="POST" class="action-form row justify-content-center w-100">
+      <a href="/admin/blog/{{ id }}" class="col-4"><button type="button" class="btn btn-success w-100">View</button></a>
+      <a href="/admin/blog/edit/{{ id }}" class="col-4"><button type="button" class="btn btn-primary w-100">Edit</button></a>
+      <input type="text" style="display: none;"" name="delete_id" id="delete_id" value="{{ id }}">
+      <a class="col-4"><button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a>
+    </form>
+  {% endif %}
+{% endmacro %}
+
+{% macro get_image_ref(id) %}
+../static/assets/images/blog_thumbnails/pic{{ id }}.jpg
+{% endmacro %}
+
+{% macro get_nav_link(id) %}
+  {% if admin_nav == True %}
+    /admin/blog/{{ id }}
+  {% else %}
+    /blog/{{ id }}
+  {% endif %}
+{% endmacro %}

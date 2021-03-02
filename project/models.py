@@ -1,21 +1,30 @@
 from app import db
-from app.models.user import *
+from app.models import *
+from faker import Faker
 
-def migration():
-    # Clean migration of db
-    print ("Dropping all tables...")
-    db.drop_all()
-    print ("Done!")
-    print ("Creating database tables...")
-    db.create_all()
-    print ("Done!")
+def migrate():
+    print ("Migrating database...")
+    try:
+        db.drop_all()
+        db.create_all()
+        return "Done!"
+    except Exception as e:
+        return(str(e))
 
 def seed():
-    print ("Seeding database...")
-    create_user("luke.munday@gmail.com", "LukePass", "Admin")
-    create_user("test@gmail.com", "test")
-    print ("Done!")
+    print ("Seeding tables...")
+    try:
+        User.create("luke.munday@gmail.com", "LukePass", "Admin")
+        User.create("test@gmail.com", "test")
+        fake = Faker()
+        for _ in range(10):
+            User.seed(fake)
+        for _ in range(6):
+            Blog.seed(fake)
+        return "Done!"
+    except Exception as e:
+        return(str(e))
 
 if __name__ == "__main__":
-    migration()
-    seed()
+    print(migrate())
+    print(seed())
