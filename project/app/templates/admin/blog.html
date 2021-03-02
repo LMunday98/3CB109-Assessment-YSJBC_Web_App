@@ -11,12 +11,15 @@
   <div class="container">
 
     {% if action == "ViewAll" %}
+
       <div class="card">
         <div class="card-body">
-          <h1 class="card-title">Admin Blog</h1>
+          <h1 class="card-title">Blog Management</h1>
           <p class="card-text">You can learn more about my website here.</p>
+          <a href="/admin/blog/create"><button type="button" class="btn btn-primary">Create Blog</button></a>
         </div>
       </div>
+
       {% from "components/blog_rows.html" import create_blog_rows with context %}
       {{ create_blog_rows(blogs) }}
     {% endif %}
@@ -27,7 +30,7 @@
     {% endif %}
 
     {% if action == "Create" %}
-      {% from "components/blog_form.html" import create_blog_form %}
+      {% from "components/blog_form.html" import create_blog_form with context %}
       {{ create_blog_form('') }}
     {% endif %}
 
