@@ -34,7 +34,6 @@ def get(id, route, action="ViewAll"):
         else:
             # Display all
             blogs = Blog.get_all()
-            print (blogs)
             return render_template(url, blogs=blogs, action="ViewAll")
     except Exception as e:
         return(str(e))
