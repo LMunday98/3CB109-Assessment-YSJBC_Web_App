@@ -1,23 +1,16 @@
 {% macro create_blog_tile(blog) %}
 
-<style>
-  .blog-tile-btn {
-    max-width: 80%;
-    text-align: center;
-  }
-</style>
-
 <div class="col-4 col-12-medium">
     <!-- Box -->
       <section class="box feature">
-        <a href="blog/{{ blog.id }}" class="image featured"><img src="{{ get_image_ref(blog.id) }}" alt="" /></a>
+        <a href="{{ admin_link() }}blog/{{ blog.id }}" class="image featured"><img src="{{ get_image_ref(blog.id) }}" alt="" /></a>
         <div class="inner">
           <header>
             <h2>{{ blog.title }}</h2>
             <p>{{ blog.updated_at }}</p>
           </header>
           <p>{{ blog.desc }}</p>
-          {{ admin_actions(blog) }}
+          {{ admin_actions(blog.id) }}
         </div>
       </section>
 
@@ -25,11 +18,11 @@
 
 {% endmacro %}
 
-{% macro admin_actions(blog) %}
+{% macro admin_actions(id) %}
   {% if admin_nav == True %}
     <div class="row">
-      <a href="/admin/blog/{{ blog.id }}" class="button col-4 blog-tile-btn btn-success">View</a>
-      <a href="/admin/blog/edit/{{ blog.id }}" class="button col-4 blog-tile-btn">Edit</a>
+      <a href="/admin/blog/{{ id }}" class="button col-4 blog-tile-btn btn-success">View</a>
+      <a href="/admin/blog/edit/{{ id }}" class="button col-4 blog-tile-btn">Edit</a>
       <a class="button col-4 blog-tile-btn btn-danger">Delete</a>
     </div>
   {% endif %}
@@ -39,3 +32,8 @@
 ../static/assets/images/blog_thumbnails/pic{{ id }}.jpg
 {% endmacro %}
 
+{% macro admin_link() %}
+  {% if admin_nav == True %}
+  /admin/
+  {% endif %}
+{% endmacro %}
