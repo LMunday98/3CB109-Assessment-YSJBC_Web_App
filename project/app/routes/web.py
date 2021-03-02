@@ -46,6 +46,18 @@ def user_register():
     return render_template("auth/register.html")
 
 # Define admin routes
+@app.route('/admin/home')
+def admin_home():
+    return render_template('admin/home.html')
+
 @app.route('/admin/blog')
-def admin_blog():
-    return render_template("admin/blog.html")
+@app.route('/admin/blog/<id>')
+def admin_blog(id=None):
+    blog = Blog.get_blog(id)
+    if (blog != None):
+        # Get specific blog
+        return render_template('admin/blog.html', blog=blog)
+    else:
+        # Display all
+        blogs = Blog.query.all()
+        return render_template('admin/blog.html', blogs=blogs)

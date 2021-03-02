@@ -1,0 +1,13 @@
+{% macro create_blog_rows(blogs) %}
+
+    {% from "components/blog_tile.html" import create_blog_tile with context %}
+
+    {% for blog_row in blogs | batch(3, '&nbsp;') %}
+        <div class="row">
+            {% for blog in blog_row %}
+                {{ create_blog_tile(blog) }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+{% endmacro %}

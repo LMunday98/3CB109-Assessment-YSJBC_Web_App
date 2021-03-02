@@ -37,12 +37,3 @@ def logout():
         return auth.logout()
     except Exception as e:
         return(str(e))
-
-# Define admin api calls
-@app.route('/admin/home')
-def admin_home():
-    try:
-        users = User.query.all()
-        return render_template('admin/home.html', users=users)
-    except Exception as e:
-        return(str(e))
