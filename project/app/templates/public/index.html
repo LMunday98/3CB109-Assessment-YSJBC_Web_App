@@ -6,31 +6,42 @@
 {% block title %}Home{% endblock %}
 
 {% block header %}
-<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/home.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/home.css') }}">
 {% endblock %}
 
 {% block body %}
-<!-- Banner -->
-<div id="banner-wrapper">
-  <div id="banner" class="box content-container">
-    <div class="row">
-      <div class="col-7 col-12-medium">
-        <h2>We are YSJBC.</h2>
-        <p>Check out what we've recently been up to.</p>
-      </div>
-      <div class="col-5 col-12-medium">
-        <ul>
-          <li><a href="#" class="banner-button large icon solid">
-            Blog
-            <span style="float: right;" class="btn-icon fas fa-arrow-circle-right"></span>
-          </a></li>
-          <li><a href="#" class="banner-button alt large icon solid">
-            Training
-            <span style="float: right;"  class="btn-icon fas fa-calendar-alt"></span>
-          </a></li>
-        </ul>
+  <!-- Banner -->
+  <div id="banner-wrapper">
+    <div id="banner" class="box container">
+      <div class="row">
+        <div class="col-7 col-12-medium">
+          <h2>We are YSJBC.</h2>
+          <p>Check out what we've recently been up to.</p>
+        </div>
+        <div class="col-5 col-12-medium">
+          <ul>
+            <li><a href="/blog" class="button large icon solid fa-arrow-circle-right">Blog</a></li>
+            <li><a href="/training" class="button alt large icon solid fa-calendar-alt">Training</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Recent blogs -->
+  <div id="features-wrapper">
+    <div class="container">
+      <div class="row">
+        
+        {% from "components/blog_tile.html" import create_blog_tile with context %}
+
+        {% for blog in recent_blogs %}
+          {{ create_blog_tile(blog) }}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
 {% endblock %}

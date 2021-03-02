@@ -2,20 +2,31 @@
 
 from flask import render_template
 
+from models import *
 from app import app
 
-# Define user routes
+# Define public routes
 @app.route('/')
 def index():
-    return render_template("public/index.html")
+    recent_blogs = Blog.query.order_by(Blog.updated_at.desc()).limit(3).all()
+    return render_template("public/index.html", recent_blogs=recent_blogs)
 
 @app.route('/about')
 def about():
     return render_template("public/about.html")
 
 @app.route('/blog')
-def blog():
-    return render_template("public/blog.html")
+@app.route('/blog/<id>')
+def blog(id=None):
+    blog = Blog.get_blog(id)
+    if (blog != None):
+        # Get specific blog
+        return render_template('public/blog.html', blog=blog)
+    else:
+        # Display all
+        blogs = Blog.query.all()
+        return render_template('public/blog.html', blogs=blogs)
+    
 
 @app.route('/training')
 def training():

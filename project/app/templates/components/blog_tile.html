@@ -1,0 +1,24 @@
+{% macro create_blog_tile(blog) %}
+
+
+<div class="col-4 col-12-medium">
+    <!-- Box -->
+      <section class="box feature">
+        <a href="blog/{{ blog.id }}" class="image featured"><img src="{{ get_image_ref(blog.id) }}" alt="" /></a>
+        <div class="inner">
+          <header>
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.updated_at }}</p>
+          </header>
+          <p>{{ blog.desc }}</p>
+          {{ image_ref }}
+        </div>
+      </section>
+
+  </div>
+{% endmacro %}
+
+{% macro get_image_ref(id) %}
+static/assets/images/blog_tiles/pic{{ id }}.jpg
+{% endmacro %}
+
