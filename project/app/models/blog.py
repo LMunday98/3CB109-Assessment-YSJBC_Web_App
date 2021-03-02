@@ -37,10 +37,10 @@ class Blog(db.Model):
 
         return blog
 
-    #def delete_blog(id):
-        #blog = Blog.query.filter_by(id=id).first()
-        #db.session.delete(blog)
-        #db.session.commit()
+    def delete_blog(id):
+        blog = Blog.query.filter_by(id=id).first()
+        db.session.delete(blog)
+        db.session.commit()
 
     @classmethod
     def seed(cls, fake):
