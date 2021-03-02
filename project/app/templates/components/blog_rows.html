@@ -1,13 +1,9 @@
 {% macro create_blog_rows(blogs) %}
 
-    <style>
-        .blog-tile-btn {
-        max-width: 80%;
-        text-align: center;
-        }
-    </style>
-
     {% from "components/blog_tile.html" import create_blog_tile with context %}
+    {% from "components/blog_tile.html" import get_action_css with context %}
+
+    {{ get_action_css() }}
 
     {% for blog_row in blogs | batch(3, '&nbsp;') %}
         <div class="row">

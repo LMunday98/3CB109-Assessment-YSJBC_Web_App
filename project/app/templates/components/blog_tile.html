@@ -18,13 +18,25 @@
 
 {% endmacro %}
 
+{% macro get_action_css() %}
+  <style>
+    .action-form {
+      padding: 0;
+      margin: 2em 0em -1em 0em;
+    }
+    .action-form a {
+      padding: 0;
+    }
+  </style>
+{% endmacro %}
+
 {% macro admin_actions(id) %}
   {% if admin_nav == True %}
-    <div class="row">
-      <a href="/admin/blog/{{ id }}" class="button col-4 blog-tile-btn btn-success">View</a>
-      <a href="/admin/blog/edit/{{ id }}" class="button col-4 blog-tile-btn">Edit</a>
-      <a class="button col-4 blog-tile-btn btn-danger">Delete</a>
-    </div>
+    <form action="" method="POST" class="action-form row justify-content-center w-100">
+      <a href="/admin/blog/{{ id }}" class="col-4"><button class="btn btn-success w-100">View</button></a>
+      <a href="/admin/blog/edit/{{ id }}" class="col-4"><button class="btn btn-primary w-100">Edit</button></a>
+      <a class="col-4"><button class="btn btn-danger w-100">Delete</button></a>
+    </form>
   {% endif %}
 {% endmacro %}
 
