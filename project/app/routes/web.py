@@ -36,3 +36,7 @@ def user_register():
 @app.route('/admin/home')
 def admin_home():
     return render_template('admin/home.html')
+
+@app.route('/admin/blog/create')
+def admin_blog_create():
+    return render_template('admin/blog.html', action="Create")
