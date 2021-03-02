@@ -16,7 +16,7 @@ def login():
      
     if request.method == 'POST':
         try:
-            return auth.login(request.form)
+            return auth_controller.login(request.form)
         except Exception as e:
             return(str(e))
 
@@ -27,13 +27,13 @@ def register():
      
     if request.method == 'POST':
         try:
-            return auth.register(request.form)
+            return auth_controller.register(request.form)
         except Exception as e:
             return(str(e))
 
 @app.route('/logout')
 def logout():
     try:
-        return auth.logout()
+        return auth_controller.logout()
     except Exception as e:
         return(str(e))
