@@ -17,8 +17,22 @@
   <div id="features-wrapper">
     <div class="container">
 
-      {% from "components/blog_rows.html" import create_blog_rows with context %}
-      {{ create_blog_rows(blogs) }}
+      
+
+      {% if action == "ViewAll" %}
+        {% from "components/blog_rows.html" import create_blog_rows with context %}
+        {{ create_blog_rows(blogs) }}
+      {% endif %}
+
+      {% if action == "ViewOne" %}
+        {% from "components/blog_view.html" import create_blog_view with context %}
+        {{ create_blog_view(blog) }}
+      {% endif %}
+
+      {% if action == "Edit" %}
+        {% from "components/blog_form.html" import create_blog_form with context %}
+        {{ create_blog_view(blog) }}
+      {% endif %}
 
     </div>
   </div>

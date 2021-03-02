@@ -56,11 +56,11 @@ def admin_blog(id=None):
     blog = Blog.get_blog(id)
     if (blog != None):
         # Get specific blog
-        return render_template('admin/blog.html', blog=blog)
+        return render_template('admin/blog.html', blog=blog, action="ViewOne")
     else:
         # Display all
         blogs = Blog.query.all()
-        return render_template('admin/blog.html', blogs=blogs)
+        return render_template('admin/blog.html', blogs=blogs, action="ViewAll")
 
 @app.route('/admin/blog/edit')
 @app.route('/admin/blog/edit/<id>')
@@ -71,8 +71,7 @@ def admin_blog_edit(id=None):
         return render_template('admin/blog.html', blog=blog, action="Edit")
     else:
         # Return to all blogs
-        blogs = Blog.query.all()
-        return render_template('admin/blog.html', blogs=blogs)
+        return redirect('/admin/blog')
 
 @app.route('/admin/blog/delete', methods = ['POST', 'GET'])
 def admin_blog_delete():
