@@ -27,12 +27,13 @@ class Blog(db.Model):
         blog = Blog.query.filter_by(id=id).first()
         return blog
 
+    @staticmethod
     def get_all():
         blogs = Blog.query.all()
         return blogs
     
     @classmethod
-    def create(title, desc, body):
+    def create(cls, title, desc, body):
         blog = Blog(title, desc, body)
 
         # Actually add user to the database
