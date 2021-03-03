@@ -24,7 +24,7 @@ def login():
         
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
-    return auth_controller.register(request.form)
+    return auth_controller.register(request.method, request.form)
 
 @app.route('/logout')
 def logout():
