@@ -22,6 +22,7 @@ class Blog(db.Model):
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
 
+    @staticmethod
     def get(id):
         blog = Blog.query.filter_by(id=id).first()
         return blog
@@ -30,6 +31,7 @@ class Blog(db.Model):
         blogs = Blog.query.all()
         return blogs
     
+    @classmethod
     def create(title, desc, body):
         blog = Blog(title, desc, body)
 
