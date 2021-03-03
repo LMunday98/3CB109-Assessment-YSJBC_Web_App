@@ -47,10 +47,15 @@ def admin_blog_edit_catch_bad_url():
 def admin_blog_edit(id=None):
     return blog_controller.get(id, "admin", "Edit")
 
-@app.route('/blog/update', methods = ['POST', 'GET'])
-def blog_update():
-    return blog_controller.update(request.method, request.form)
-
 @app.route('/admin/blog/delete', methods = ['POST', 'GET'])
 def admin_blog_delete():
     return blog_controller.delete(request.method, request.form)
+
+# Define blog api calls
+@app.route('/blog/create', methods = ['POST', 'GET'])
+def blog_create():
+    return blog_controller.create(request.method, request.form)
+
+@app.route('/blog/update', methods = ['POST', 'GET'])
+def blog_update():
+    return blog_controller.update(request.method, request.form)

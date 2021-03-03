@@ -7,32 +7,38 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-  <div class="card">
-    <div class="card-body">
-      <h1 class="card-title">Admin Blog</h1>
-      <p class="card-text">You can learn more about my website here.</p>
-    </div>
-  </div>
 
-  <div id="features-wrapper">
-    <div class="container">
+<div id="features-wrapper">
+  <div class="container">
 
-      
+    {% if action == "ViewAll" %}
 
-      {% if action == "ViewAll" %}
-        {% from "components/blog_rows.html" import create_blog_rows with context %}
-        {{ create_blog_rows(blogs) }}
-      {% endif %}
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Blog Management</h1>
+          <p class="card-text">You can learn more about my website here.</p>
+          <a href="/admin/blog/create"><button type="button" class="btn btn-primary">Create Blog</button></a>
+        </div>
+      </div>
 
-      {% if action == "ViewOne" %}
-        {% from "components/blog_view.html" import create_blog_view with context %}
-        {{ create_blog_view(blog) }}
-      {% endif %}
+      {% from "components/blog_rows.html" import create_blog_rows with context %}
+      {{ create_blog_rows(blogs) }}
+    {% endif %}
 
-      {% if action == "Edit" %}
-        {% from "components/blog_form.html" import create_blog_form with context %}
-        {{ create_blog_form(blog) }}
-      {% endif %}
+    {% if action == "ViewOne" %}
+      {% from "components/blog_view.html" import create_blog_view with context %}
+      {{ create_blog_view(blog) }}
+    {% endif %}
+
+    {% if action == "Create" %}
+      {% from "components/blog_form.html" import create_blog_form with context %}
+      {{ create_blog_form('') }}
+    {% endif %}
+
+    {% if action == "Edit" %}
+      {% from "components/blog_form.html" import create_blog_form with context %}
+      {{ create_blog_form(blog) }}
+    {% endif %}
 
     </div>
   </div>
