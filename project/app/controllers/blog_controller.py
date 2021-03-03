@@ -1,11 +1,15 @@
 from app.models.blog import *
 from flask import render_template, redirect
 
-def create(form_data):
-    new_title = form_data['title']
-    new_desc = form_data['desc']
-    new_body = form_data['body']
-    Blog.create(new_title, new_desc, new_body)
+def create(method, form_data):
+    if method == 'POST':
+        try:
+            new_title = form_data['title']
+            new_desc = form_data['desc']
+            new_body = form_data['body']
+            Blog.create(new_title, new_desc, new_body)
+        except Exception as e:
+            return(str(e))
 
     return redirect('/admin/blog')
 
@@ -33,7 +37,7 @@ def get(id, route, action="ViewAll"):
             return render_template(url, blog=blog, action=action)
         else:
             # Display all
-            blogs = Blog.get_all()
+            blogs = Blog.query.order_by(Blog.updated_at.desc()).all()
             return render_template(url, blogs=blogs, action="ViewAll")
     except Exception as e:
         return(str(e))
