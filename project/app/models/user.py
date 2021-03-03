@@ -11,7 +11,7 @@ class User(db.Model):
     # User attributes
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    account_type = db.Column(db.String(8), unique=False, default="User")
+    account_type = db.Column(db.String(8), unique=False, default="user")
 
     def __init__(self, email, password, account_type):
         self.email = email
@@ -26,7 +26,7 @@ class User(db.Model):
         return bcrypt.check_password_hash(self.password_hash, password)
 
     @classmethod
-    def create(cls, new_email, new_password, account_type="User"):
+    def create(cls, new_email, new_password, account_type="user"):
         user = User(new_email, new_password, account_type)
 
         # Actually add user to the database

@@ -8,8 +8,8 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__, instance_relative_config=True)
 
 # Setup SQL Alchemy
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@127.0.0.1/flask'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://luke.munday:xPH89C6z9OrABOO2@127.0.0.1/luke.munday'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@127.0.0.1/flask'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://luke.munday:xPH89C6z9OrABOO2@127.0.0.1/luke.munday'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
