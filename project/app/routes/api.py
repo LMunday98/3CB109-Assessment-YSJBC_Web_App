@@ -4,10 +4,16 @@ from flask import render_template, request, redirect
 
 from models import *
 from app import app
+from app import login_manager
 
 # Import all controllers
 from app.controllers import *
 
+# Login manager
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+    
 # Define public api calls
 @app.route('/blog')
 def blog_view_all(id=None):

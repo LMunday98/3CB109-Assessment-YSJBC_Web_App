@@ -3,6 +3,7 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 
 # Initialize the app
 app = Flask(__name__, instance_relative_config=True)
@@ -21,3 +22,7 @@ db = SQLAlchemy(app)
 
 # Define bcrypt
 bcrypt = Bcrypt(app)
+
+# Define login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
