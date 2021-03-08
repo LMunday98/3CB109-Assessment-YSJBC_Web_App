@@ -13,6 +13,10 @@ from app.controllers import *
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_user_by_id(user_id)
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return render_template("auth/login.html", msg="Please login to continue!")
     
 # Define public api calls
 @app.route('/blog')
