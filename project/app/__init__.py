@@ -3,7 +3,7 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_login import LoginManager, login_required, login_user
 
 # Initialize the app
 app = Flask(__name__, instance_relative_config=True)
@@ -16,6 +16,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Load the config file
 app.config.from_object('config')
+
+app.secret_key = 'super secret key'
 
 # Define app wide db instance
 db = SQLAlchemy(app)

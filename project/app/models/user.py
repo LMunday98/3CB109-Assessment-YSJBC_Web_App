@@ -1,7 +1,9 @@
 from app import db
 from app import bcrypt
+from flask_login import UserMixin
 
-class User(db.Model):
+
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
     __table_args__ = {'extend_existing': True}
 
@@ -12,6 +14,7 @@ class User(db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     account_type = db.Column(db.String(8), unique=False, default="user")
+    authenticated = db.Column(db.Boolean, default=False)
 
     def __init__(self, email, password, account_type):
         self.email = email
@@ -46,3 +49,21 @@ class User(db.Model):
     def seed(cls, fake):
         email = fake.email()
         cls.create(email, email)
+
+    def is_active(self):
+        """True, as all users are active."""
+        return True
+
+    @staticmethod
+    def get_user_by_id(id):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        user = User.query.filter_by(id=id).first()
+        return user
+
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return self.authenticated
+
+    def is_anonymous(self):
+        """False, as anonymous users aren't supported."""
+        return False

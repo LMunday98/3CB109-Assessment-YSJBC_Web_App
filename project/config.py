@@ -5,3 +5,6 @@ DEBUG = True
 
 # Custom config
 TEMPLATES_AUTO_RELOAD = True
+
+# Secret key
+#SECRET_KEY = 'super secret key'
