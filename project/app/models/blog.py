@@ -22,15 +22,18 @@ class Blog(db.Model):
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
 
+    @staticmethod
     def get(id):
         blog = Blog.query.filter_by(id=id).first()
         return blog
 
+    @staticmethod
     def get_all():
         blogs = Blog.query.all()
         return blogs
     
-    def create(title, desc, body):
+    @classmethod
+    def create(cls, title, desc, body):
         blog = Blog(title, desc, body)
 
         # Actually add user to the database
@@ -48,6 +51,7 @@ class Blog(db.Model):
         self.updated_at = datetime.datetime.now()
         db.session.commit()
 
+    @staticmethod
     def delete(id):
         blog = Blog.query.filter_by(id=id).first()
         db.session.delete(blog)

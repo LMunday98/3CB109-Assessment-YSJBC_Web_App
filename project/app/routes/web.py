@@ -31,12 +31,3 @@ def user_login():
 @app.route('/auth/register')
 def user_register():
     return render_template("auth/register.html")
-
-# Define admin routes
-@app.route('/admin/home')
-def admin_home():
-    return render_template('admin/home.html')
-
-@app.route('/admin/blog/create')
-def admin_blog_create():
-    return render_template('admin/blog.html', action="Create")
