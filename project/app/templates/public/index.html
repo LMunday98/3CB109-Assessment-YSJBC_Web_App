@@ -40,5 +40,46 @@
     </div>
   </div>
 
+  <!-- Image scroller -->
+  <div id="features-wrapper" style="background-color: #ebebeb;">
+    <div class="container"  style="margin-top: 0.5em; text-align: center;">
+        <h1>
+          Image Carousel
+        </h1>
+        <p>
+          test
+        </p>
+
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          </div>
+          <div class="carousel-inner"  style="height: 440px;">
+            <div class="carousel-item active" data-bs-interval="">
+              <img src="{{ url_for('static', filename='assets/images/row_main.jpeg') }}" class="d-block w-100 h-100" alt="..." style="background-image: ;">
+              <div class="carousel-caption d-none d-md-block">
+                <h3 style="color: white;">First slide label</h3>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="">
+              <img src="{{ url_for('static', filename='assets/images/scull.jpg') }}" class="d-block w-100 h-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h3 style="color: white;">Second slide label</h3>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev" style="background-color: rgba(255, 255, 255, 0);">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next" style="background-color: rgba(255, 255, 255, 0);">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+    </div>
+  </div>
 
 {% endblock %}
