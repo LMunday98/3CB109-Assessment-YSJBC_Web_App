@@ -2,7 +2,8 @@ from app import db
 import datetime
 
 class Blog(db.Model):
-    db.metadata.clear()
+    __tablename__ = 'blogs'
+    __table_args__ = {'extend_existing': True}
 
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
@@ -21,11 +22,18 @@ class Blog(db.Model):
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
 
-    def get_blog(id):
+    @staticmethod
+    def get(id):
         blog = Blog.query.filter_by(id=id).first()
         return blog
+
+    @staticmethod
+    def get_all():
+        blogs = Blog.query.all()
+        return blogs
     
-    def create_blog(title, desc, body):
+    @classmethod
+    def create(cls, title, desc, body):
         blog = Blog(title, desc, body)
 
         # Actually add user to the database
@@ -36,9 +44,22 @@ class Blog(db.Model):
 
         return blog
 
+    def update(self, title, desc, body):
+        self.title = title
+        self.desc = desc
+        self.body = body
+        self.updated_at = datetime.datetime.now()
+        db.session.commit()
+
+    @staticmethod
+    def delete(id):
+        blog = Blog.query.filter_by(id=id).first()
+        db.session.delete(blog)
+        db.session.commit()
+
     @classmethod
     def seed(cls, fake):
         title = fake.sentence()
         desc = fake.sentence()
         body = fake.text()
-        cls.create_blog(title, desc, body)
+        cls.create(title, desc, body)
