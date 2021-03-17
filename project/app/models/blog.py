@@ -51,6 +51,7 @@ class Blog(db.Model):
         self.updated_at = datetime.datetime.now()
         db.session.commit()
 
+    @staticmethod
     def delete(id):
         blog = Blog.query.filter_by(id=id).first()
         db.session.delete(blog)
