@@ -19,7 +19,7 @@ def seed():
         fake = Faker()
         for _ in range(10):
             User.seed(fake)
-        for _ in range(6):
+        for _ in range(12):
             Blog.seed(fake)
         return "Done!"
     except Exception as e:
