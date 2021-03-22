@@ -14,12 +14,12 @@ def migrate():
 def seed():
     print ("Seeding tables...")
     try:
-        User.create("luke.munday@gmail.com", "LukePass", "Admin")
+        User.create("luke.munday@gmail.com", "LukePass", "admin")
         User.create("test@gmail.com", "test")
         fake = Faker()
         for _ in range(10):
             User.seed(fake)
-        for _ in range(6):
+        for _ in range(12):
             Blog.seed(fake)
         return "Done!"
     except Exception as e:
