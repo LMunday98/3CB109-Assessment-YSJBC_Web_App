@@ -12,6 +12,9 @@ def login(method, form_data):
             user = User.get(email)
 
             if ((user != None) and (user.check_password(password))):
+                if (not user.check_verified()):
+                    return render_template("auth/login.html", msg="Account has not been approved!")
+                    
                 # Login manager authenticate user
                 login_user(user)
 
