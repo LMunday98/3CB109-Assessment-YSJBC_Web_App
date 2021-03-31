@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     # User attributes
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    account_type = db.Column(db.String(8), unique=False, default="user")
+    account_type = db.Column(db.String(8), unique=False, default="guest")
     authenticated = db.Column(db.Boolean, default=False)
 
     def __init__(self, email, password, account_type):
@@ -29,7 +29,7 @@ class User(UserMixin, db.Model):
         return bcrypt.check_password_hash(self.password_hash, password)
 
     @classmethod
-    def create(cls, new_email, new_password, account_type="user"):
+    def create(cls, new_email, new_password, account_type="guest"):
         user = User(new_email, new_password, account_type)
 
         # Actually add user to the database

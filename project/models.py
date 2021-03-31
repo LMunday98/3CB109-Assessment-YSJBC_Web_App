@@ -15,7 +15,8 @@ def seed():
     print ("Seeding tables...")
     try:
         User.create("luke.munday@gmail.com", "LukePass", "admin")
-        User.create("test@gmail.com", "test")
+        User.create("user@gmail.com", "user", "user")
+        User.create("guest@gmail.com", "guest")
         fake = Faker()
         for _ in range(10):
             User.seed(fake)
