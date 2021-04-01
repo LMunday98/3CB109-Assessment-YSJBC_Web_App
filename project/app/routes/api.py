@@ -89,6 +89,7 @@ def blog_update():
 
 # Admin user management calls
 @app.route('/admin/users')
+@app.route('/admin/users/<id>')
 @login_required
-def admin_users():
-    return render_template('admin/users.html')
+def admin_users(id=None):
+    return user_manager.get(id)
