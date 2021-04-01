@@ -5,6 +5,7 @@ from flask import render_template, request, redirect
 from models import *
 from app import app
 from app import login_manager, login_required, login_user
+from flask_login import login_user, current_user, logout_user
 
 # Import all controllers
 from app.controllers import *
@@ -39,6 +40,12 @@ def register():
 @app.route('/logout')
 def logout():
     return auth_controller.logout()
+
+# Define user api calls
+@app.route('/user/home')
+@login_required
+def user_home():
+    return render_template('user/home.html')
 
 # Define admin api calls
 @app.route('/admin/home')
