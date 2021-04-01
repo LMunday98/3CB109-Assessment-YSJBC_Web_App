@@ -52,9 +52,9 @@ class User(UserMixin, db.Model):
         return user
 
     @classmethod
-    def seed(cls, fake):
+    def seed(cls, fake, account_type="guest"):
         email = fake.email()
-        cls.create(email, email)
+        cls.create(email, email, account_type)
 
     def is_active(self):
         """True, as all users are active."""
