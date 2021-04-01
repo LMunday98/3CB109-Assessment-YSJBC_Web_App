@@ -1,5 +1,8 @@
 <!-- base.html -->
 
+{% from "components/nav/nav_links.html" import create_nav_links with context %}
+{{ create_nav_links() }}
+
 {% set public_navigation_bar = [
   ('/', 'index', 'Home'),
   ('/about', 'about', 'About'),
@@ -11,6 +14,7 @@
 
 {% set admin_navigation_bar = [
   ('/admin/home', 'home', 'Home'),
+  ('/admin/users', 'users', 'Users'),
   ('/admin/blog', 'blog', 'Blog'),
   ('/logout', 'logout', 'Logout')
 ] -%}
@@ -59,65 +63,11 @@
       <!-- Header -->
 				<div id="header-wrapper">
 					<header id="header" class="container">
-
-						<!-- Logo -->
-            <!--
-							<div id="logo">
-								<h1><a href="index.html">Verti</a></h1>
-								<span>by HTML5 UP</span>
-							</div>
-              -->
-						<!-- Nav -->
-            <!--
-							<nav id="nav">
-								<ul>
-									<li class="current"><a href="index.html">Welcome</a></li>
-									<li>
-										<a href="#">Dropdown</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a href="left-sidebar.html">Left Sidebar</a></li>
-									<li><a href="right-sidebar.html">Right Sidebar</a></li>
-									<li><a href="no-sidebar.html">No Sidebar</a></li>
-								</ul>
-							</nav>
-              -->
 					</header>
 				</div>
 
-      <nav id="nav" class="navbar navbar-expand-lg navbar-light w-100" style="margin-bottom: 5em;">
-        <div class="container-fluid">
-            <a id="nav-logo" class="navbar-brand" href="/">
-                <img src="{{ url_for('static', filename='assets/images/logo.jpg') }}" alt="" width="auto" height="48">
-                YSJ Boat Club
-            </a>  
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-              <div id="nav-links" class="navbar-nav nav-fill w-90">
-
-                {% for href, id, caption in navigation_bar %}
-                  <a class="nav-link {% if id == active_page %} current {% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
-                {% endfor %}
-                
-              </div>
-            </div>
-        </div>
-      </nav>
+        {% from "components/nav/nav_bar.html" import create_nav_bar with context %}
+        {{ create_nav_bar() }}
         
         {% block body %}
         {% endblock %}

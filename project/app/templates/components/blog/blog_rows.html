@@ -1,7 +1,7 @@
 {% macro create_blog_rows(blogs) %}
 
-    {% from "components/blog_tile.html" import create_blog_tile with context %}
-    {% from "components/blog_tile.html" import get_action_css with context %}
+    {% from "components/blog/blog_tile.html" import create_blog_tile with context %}
+    {% from "components/blog/blog_tile.html" import get_action_css with context %}
 
     {{ get_action_css() }}
 
