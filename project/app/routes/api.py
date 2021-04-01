@@ -86,3 +86,9 @@ def blog_create():
 @login_required
 def blog_update():
     return blog_controller.update(request.method, request.form)
+
+# Admin user management calls
+@app.route('/admin/users')
+@login_required
+def admin_users():
+    return render_template('admin/users.html')
