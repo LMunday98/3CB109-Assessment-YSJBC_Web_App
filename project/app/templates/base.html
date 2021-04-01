@@ -19,13 +19,22 @@
   ('/logout', 'logout', 'Logout')
 ] -%}
 
+{% set user_navigation_bar = [
+  ('/user/home', 'home', 'Home'),
+  ('/logout', 'logout', 'Logout')
+] -%}
+
 {% set active_page = active_page|default('index') -%}
+{% set navigation_bar = public_navigation_bar -%}
 {% set admin_nav = admin_nav|default(False) -%}
+{% set user_nav = user_nav|default(False) -%}
 
 {% if admin_nav == True %}
-  {% set navigation_bar = admin_navigation_bar -%}
-{% else %}
-  {% set navigation_bar = public_navigation_bar -%}
+  {% set navigation_bar = admin_navigation_bar -%}  
+{% endif %}
+
+{% if user_nav == True %}
+  {% set navigation_bar = user_navigation_bar -%}  
 {% endif %}
 
 <!DOCTYPE html>
