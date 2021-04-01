@@ -6,6 +6,8 @@
 {% set active_page = "users" %}
 {% block title %}Users{% endblock %}
 
+{% from "components/user_management/create_button.html" import create_button with context %}
+
 {% block body %}
 <div class="container">
   <div class="card">
@@ -23,10 +25,7 @@
         <div class="row">
           <p class="card-text col">{{ user.email }}</p>
           <div class="col">
-            <form action="/admin/users/unapprove" method="POST" class="action-form">
-              <input type="text" style="display: none;"" name="unapprove_id" id="unapprove_id" value="{{ user.id }}">
-              <a class="col-4"><button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to unapprove this account?');">Unpprove Account</button></a>
-            </form>
+            {{ create_button(user, 'unapprove', 'Unapprove Account') }}
           </div>
         </div>
       {% endfor %}
@@ -38,16 +37,10 @@
         <h3 class="card-title">Guest Accounts</h3>
         {% for user in guest_users %}
           <div class="row">
-            <p class="card-text col">{{ user.email }}</p>
-            <div class="col row">
-              <form action="/admin/users/approve" method="POST" class="action-form col">
-                <input type="text" style="display: none;"" name="approve_id" id="approve_id" value="{{ user.id }}">
-                <a class="col-4"><button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to approve this account?');">Approve Account</button></a>
-              </form>
-              <form action="/admin/users/delete" method="POST" class="action-form col">
-                <input type="text" style="display: none;"" name="delete_id" id="delete_id" value="{{ user.id }}">
-                <a class="col-4"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this account?');">Delete Account</button></a>
-              </form>
+            <p class="card-text col" style="background-color: green;">{{ user.email }}</p>
+            <div class="col row justify-content-center" style="background-color: yellow;">
+              {{ create_button(user, 'approve', 'Approve Account') }}
+              {{ create_button(user, 'delete', 'Delete Account') }}
             </div>
           </div>
         {% endfor %}
