@@ -22,9 +22,10 @@
         <h3 class="card-title">Approved Accounts</h3>
         {% for user in approved_users %}
         <div class="row">
-          <p class="card-text col">{{ user.email }}</p>
-          <div class="col">
-            {{ create_button(user, 'unapprove', 'Unapprove Account') }}
+          <p class="card-text col-6">{{ user.email }}</p>
+          <div class="col row justify-content-center">
+            {{ create_button(user, 'unapprove', 'Unapprove Account', 'btn-warning') }}
+            <div class="action-form col"></div>
           </div>
         </div>
       {% endfor %}
@@ -36,10 +37,10 @@
         <h3 class="card-title">Guest Accounts</h3>
         {% for user in guest_users %}
           <div class="row">
-            <p class="card-text col" style="background-color: green;">{{ user.email }}</p>
-            <div class="col row justify-content-center" style="background-color: yellow;">
-              {{ create_button(user, 'approve', 'Approve Account') }}
-              {{ create_button(user, 'delete', 'Delete Account') }}
+            <p class="card-text col-6">{{ user.email }}</p>
+            <div class="col row justify-content-center">
+              {{ create_button(user, 'approve', 'Approve Account', 'btn-success') }}
+              {{ create_button(user, 'delete', 'Delete Account', 'btn-danger') }}
             </div>
           </div>
         {% endfor %}
