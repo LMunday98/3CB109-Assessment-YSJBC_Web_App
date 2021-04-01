@@ -18,7 +18,7 @@
 
   <div class="card">
     <div class="card-body">
-        <h1 class="card-title">Approved Accounts</h1>
+        <h3 class="card-title">Approved Accounts</h3>
         {% for user in approved_users %}
         <div class="row">
           <p class="card-text col">{{ user.email }}</p>
@@ -35,7 +35,7 @@
 
   <div class="card">
     <div class="card-body">
-        <h1 class="card-title">Guest Accounts</h1>
+        <h3 class="card-title">Guest Accounts</h3>
         {% for user in guest_users %}
           <div class="row">
             <p class="card-text col">{{ user.email }}</p>
