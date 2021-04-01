@@ -93,3 +93,8 @@ def blog_update():
 @login_required
 def admin_users(id=None):
     return user_manager.get(id)
+
+@app.route('/admin/users/delete', methods = ['POST', 'GET'])
+@login_required
+def admin_users_delete():
+    return user_manager.delete(request.method, request.form)

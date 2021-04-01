@@ -73,3 +73,9 @@ class User(UserMixin, db.Model):
     def is_anonymous(self):
         """False, as anonymous users aren't supported."""
         return False
+
+    @staticmethod
+    def delete(id):
+        user = User.query.filter_by(id=id).first()
+        db.session.delete(user)
+        db.session.commit()
