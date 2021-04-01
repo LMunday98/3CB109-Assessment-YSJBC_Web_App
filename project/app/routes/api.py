@@ -98,3 +98,13 @@ def admin_users(id=None):
 @login_required
 def admin_users_delete():
     return user_manager.delete(request.method, request.form)
+
+@app.route('/admin/users/approve', methods = ['POST', 'GET'])
+@login_required
+def admin_users_approve():
+    return user_manager.approve(request.method, request.form)
+
+@app.route('/admin/users/unapprove', methods = ['POST', 'GET'])
+@login_required
+def admin_users_unapprove():
+    return user_manager.unapprove(request.method, request.form)

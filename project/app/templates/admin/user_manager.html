@@ -12,8 +12,7 @@
     <div class="card-body">
         <h1 class="card-title">User Manager</h1>
         <p class="card-text">You can learn more about my website here.</p>
-        {{ user_id }}
-        {{ users }}
+        {{ msg }}
     </div>
   </div>
 
@@ -24,7 +23,10 @@
         <div class="row">
           <p class="card-text col">{{ user.email }}</p>
           <div class="col">
-            <button type="button" class="btn btn-warning">Unapprove User</button>
+            <form action="/admin/users/unapprove" method="POST" class="action-form">
+              <input type="text" style="display: none;"" name="unapprove_id" id="unapprove_id" value="{{ user.id }}">
+              <a class="col-4"><button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to unapprove this account?');">Unpprove Account</button></a>
+            </form>
           </div>
         </div>
       {% endfor %}
@@ -37,11 +39,14 @@
         {% for user in guest_users %}
           <div class="row">
             <p class="card-text col">{{ user.email }}</p>
-            <div class="col">
-              <form action="/admin/users/delete" method="POST" class="action-form justify-content-center">
-                <button type="button" class="btn btn-success">Approve User</button>
+            <div class="col row">
+              <form action="/admin/users/approve" method="POST" class="action-form col">
+                <input type="text" style="display: none;"" name="approve_id" id="approve_id" value="{{ user.id }}">
+                <a class="col-4"><button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to approve this account?');">Approve Account</button></a>
+              </form>
+              <form action="/admin/users/delete" method="POST" class="action-form col">
                 <input type="text" style="display: none;"" name="delete_id" id="delete_id" value="{{ user.id }}">
-                <a class="col-4"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete User</button></a>
+                <a class="col-4"><button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this account?');">Delete Account</button></a>
               </form>
             </div>
           </div>

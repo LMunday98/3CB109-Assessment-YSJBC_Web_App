@@ -74,6 +74,10 @@ class User(UserMixin, db.Model):
         """False, as anonymous users aren't supported."""
         return False
 
+    def set_account_type(self, account_type):
+        self.account_type = account_type
+        db.session.commit()
+
     @staticmethod
     def delete(id):
         user = User.query.filter_by(id=id).first()
