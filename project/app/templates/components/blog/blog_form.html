@@ -7,7 +7,7 @@
 
       <h1 class="card-title">{{ action }} a Blog Post</h1>
     
-      <form action={{ get_form_action() }} method="POST" name="blog_form" id="blog_form">
+      <form action={{ get_form_action() }} method="POST" enctype="multipart/form-data" name="blog_form" id="blog_form">
         <input type="text" class="form-control" name="id" id="id" value="{{ get_val(blog.id) }}" style="display: none;">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
           <label for="thumbnail" class="form-label">Blog Thumbnail</label>
-          <input id=="thumbnail" name="thumbnail" type="file" accept="image/*" required>
+          <input id="thumbnail" name="thumbnail" type="file" accept="image/*" required>
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Submit</button>

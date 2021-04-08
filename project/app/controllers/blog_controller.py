@@ -1,5 +1,5 @@
 from app.models.blog import *
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 
 def create(method, form_data):
     if method == 'POST':
@@ -7,6 +7,9 @@ def create(method, form_data):
             new_title = form_data['title']
             new_desc = form_data['desc']
             new_body = form_data['body']
+            new_thumbnail = request.files['thumbnail']
+            if new_thumbnail.filename != '':
+                new_thumbnail.save(new_thumbnail.filename)
             Blog.create(new_title, new_desc, new_body)
         except Exception as e:
             return(str(e))
