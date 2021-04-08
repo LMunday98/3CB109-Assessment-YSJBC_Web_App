@@ -35,7 +35,7 @@ class Blog(db.Model):
         return blogs
     
     @classmethod
-    def create(cls, title, desc, body, thumbnail='pic1.jpg'):
+    def create(cls, title, desc, body, thumbnail='blog1.jpg'):
         blog = Blog(title, desc, body, thumbnail)
 
         # Actually add user to the database

@@ -3,7 +3,7 @@
 <div class="col-4 col-12-medium">
     <!-- Box -->
       <section class="box feature">
-        <a href="{{ get_nav_link(blog.id) }}" class="image featured"><img src="{{ get_image_ref(blog.id) }}" alt="" /></a>
+        <a href="{{ get_nav_link(blog.id) }}" class="image featured"><img src="{{ get_image_ref(blog.thumbnail) }}" alt="" /></a>
         <div class="inner">
           <header>
             <h2>{{ blog.title }}</h2>
@@ -41,8 +41,8 @@
   {% endif %}
 {% endmacro %}
 
-{% macro get_image_ref(id) %}
-../static/blog_thumbnails/pic{{ id }}.jpg
+{% macro get_image_ref(thumbnail) %}
+../static/blog_thumbnails/{{ thumbnail }}
 {% endmacro %}
 
 {% macro get_nav_link(id) %}
