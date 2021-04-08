@@ -7,11 +7,16 @@ def create(method, form_data):
             new_title = form_data['title']
             new_desc = form_data['desc']
             new_body = form_data['body']
-            new_thumbnail = request.files['thumbnail']
-            if new_thumbnail.filename != '':
-                new_thumbnail.save('app/static/blog_thumbnails/' + new_thumbnail.filename)
-                print (new_thumbnail.filename)
-            Blog.create(new_title, new_desc, new_body)
+            uploaded_file = request.files['thumbnail']
+
+            if uploaded_file.filename != '':
+                latest_blog = Blog.query.order_by(Blog.id.desc()).first()
+                new_file_name = 'blog' + str(int(latest_blog.id) + 1)
+                new_file_ext = '.' + uploaded_file.filename.split()[-1]
+                new_file_path = new_file_name + new_file_ext
+                uploaded_file.save('app/static/blog_thumbnails/' + new_file_path)
+
+            Blog.create(new_title, new_desc, new_body, new_file_path)
         except Exception as e:
             return(str(e))
 
