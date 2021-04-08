@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
           <label for="thumbnail" class="form-label">Blog Thumbnail</label>
-          <input id="thumbnail" name="thumbnail" type="file" accept="image/*" required>
+          {{ create_thumbnail_input(blog) }}
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -33,6 +33,15 @@
 
   </div>
 
+{% endmacro %}
+
+{% macro create_thumbnail_input(blog) %}
+{% if action == "Edit" %}
+<p class="form-label">Current: {{ blog.thumbnail }}</p>
+<input id="thumbnail" name="thumbnail" type="file" accept="image/*">
+{% else %}
+<input id="thumbnail" name="thumbnail" type="file" accept="image/*" required>
+{% endif %}
 {% endmacro %}
 
 {% macro get_val(value) %}

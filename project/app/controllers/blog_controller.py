@@ -30,8 +30,15 @@ def update(method, form_data):
             new_title = form_data['title']
             new_desc = form_data['desc']
             new_body = form_data['body']
+            uploaded_file = request.files['thumbnail']
 
             current_blog = Blog.get(id)
+
+            if uploaded_file.filename != '':
+                new_file_path = current_blog.thumbnail
+                print(new_file_path)
+                uploaded_file.save('app/static/blog_thumbnails/' + new_file_path)
+
             current_blog.update(new_title, new_desc, new_body)
         except Exception as e:
             return(str(e))

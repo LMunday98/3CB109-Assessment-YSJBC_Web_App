@@ -46,11 +46,10 @@ class Blog(db.Model):
 
         return blog
 
-    def update(self, title, desc, body, thumbnail):
+    def update(self, title, desc, body):
         self.title = title
         self.desc = desc
         self.body = body
-        self.thumbnail = thumbnail
         self.updated_at = datetime.datetime.now()
         db.session.commit()
 
