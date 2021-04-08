@@ -10,6 +10,7 @@ def create(method, form_data):
             new_thumbnail = request.files['thumbnail']
             if new_thumbnail.filename != '':
                 new_thumbnail.save('app/static/blog_thumbnails/' + new_thumbnail.filename)
+                print (new_thumbnail.filename)
             Blog.create(new_title, new_desc, new_body)
         except Exception as e:
             return(str(e))
