@@ -47,6 +47,11 @@ def logout():
 def user_home():
     return render_template('user/home.html')
 
+@app.route('/user/training')
+@login_required
+def user_training():
+    return render_template('user/training.html')
+
 # Define admin api calls
 @app.route('/admin/home')
 @login_required
@@ -82,6 +87,11 @@ def admin_blog_edit(id=None):
 @login_required
 def admin_blog_delete():
     return blog_controller.delete(request.method, request.form)
+
+@app.route('/admin/training')
+@login_required
+def admin_training():
+    return render_template('admin/training.html')
 
 # Define admin blog api calls
 @app.route('/blog/create', methods = ['POST', 'GET'])
