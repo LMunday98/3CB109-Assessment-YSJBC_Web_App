@@ -61,8 +61,9 @@ class Blog(db.Model):
         db.session.commit()
 
     @classmethod
-    def seed(cls, fake):
+    def seed(cls, fake, thumb_id):
         title = fake.sentence()
         desc = fake.sentence()
         body = fake.text()
-        cls.create(title, desc, body)
+        thumbnail = "blog" + str(thumb_id) + ".jpg"
+        cls.create(title, desc, body, thumbnail)

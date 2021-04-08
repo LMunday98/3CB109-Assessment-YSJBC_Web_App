@@ -24,7 +24,7 @@ def seed():
         for _ in range(5):
             User.seed(fake)
         for _ in range(12):
-            Blog.seed(fake)
+            Blog.seed(fake,_+1)
         return "Done!"
     except Exception as e:
         return(str(e))
