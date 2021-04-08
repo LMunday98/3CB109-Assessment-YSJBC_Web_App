@@ -12,7 +12,8 @@ def create(method, form_data):
             if uploaded_file.filename != '':
                 latest_blog = Blog.query.order_by(Blog.id.desc()).first()
                 new_file_name = 'blog' + str(int(latest_blog.id) + 1)
-                new_file_ext = '.' + uploaded_file.filename.split()[-1]
+                new_file_ext = '.' + uploaded_file.filename.split('.')[-1]
+
                 new_file_path = new_file_name + new_file_ext
                 uploaded_file.save('app/static/blog_thumbnails/' + new_file_path)
 
