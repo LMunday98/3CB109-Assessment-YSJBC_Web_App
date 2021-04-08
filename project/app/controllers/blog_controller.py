@@ -38,7 +38,6 @@ def update(method, form_data):
 
             if uploaded_file.filename != '':
                 new_file_path = current_blog.thumbnail
-                print(new_file_path)
                 uploaded_file.save('app/static/blog_thumbnails/' + new_file_path)
 
             current_blog.update(new_title, new_desc, new_body)
