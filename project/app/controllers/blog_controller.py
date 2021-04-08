@@ -1,6 +1,8 @@
 from app.models.blog import *
 from flask import render_template, redirect, request
 
+import os
+
 def create(method, form_data):
     if method == 'POST':
         try:
@@ -62,7 +64,11 @@ def get(id, route, action="ViewAll"):
 def delete(method, form_data):
     if (method == 'POST') :
         try:
-            Blog.delete(form_data['delete_id'])
+            id = form_data['delete_id']
+            delete_blog = Blog.get(id)
+            thumbnail_path = delete_blog.thumbnail
+            os.remove('app/static/blog_thumbnails/' + thumbnail_path)
+            Blog.delete(id)
         except Exception as e:
             return(str(e))
 
