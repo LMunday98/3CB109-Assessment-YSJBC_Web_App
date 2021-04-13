@@ -10,9 +10,9 @@ def show(route):
         sunday_date = monday_date + timedelta(days=7)
 
         monday_str = monday_date.strftime('%Y-%m-%d')
-        sunday_date = sunday_date.strftime('%Y-%m-%d')
+        sunday_str = sunday_date.strftime('%Y-%m-%d')
 
-        events = Event.query.filter(Event.event_start.between(monday_str, sunday_date))
+        events = Event.query.filter(Event.event_start.between(monday_str, sunday_str))
         event_dict = create_event_dict()
 
         for event in events:
