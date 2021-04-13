@@ -66,7 +66,7 @@
               <ul>
                 {% for event in events[day] %}
                   <li class="cd-schedule__event">
-                    <a data-start="{{ event.event_start }}" data-end="{{ event.event_end }}" data-content="event-abs-circuit" data-event="event-1" href="#0">
+                    <a data-start="{{ event.event_start }}" data-end="{{ event.event_end }}" data-content="event-abs-circuit" data-event="{{ event.event_type }}" href="#0">
                       <em class="cd-schedule__name">{{ event.title }}</em>
                     </a>
                   </li>
