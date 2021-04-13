@@ -3,9 +3,15 @@ from flask import render_template, redirect, request
 import datetime
 from datetime import datetime, timedelta
 
-def show(route):
+def show(route, method, form_data):
     try:
         given_week = get_week(datetime.now())
+
+        if method == 'POST':
+            new_week = form_data['week']
+            converted_week = datetime.strptime(new_week + '-1', '%G-W%V-%u')
+            given_week = get_week(converted_week)
+
         events = Event.query.filter(Event.event_start.between(given_week['Monday'], given_week['Sunday']))
         event_dict = create_event_dict()
 

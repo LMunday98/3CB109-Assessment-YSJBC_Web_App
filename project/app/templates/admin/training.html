@@ -18,12 +18,15 @@
         <h1 class="card-title">Training Scheduler</h1>
         
 
-        <a href="/admin/blog/create" style="margin-bottom: 1em;"><button type="button" class="btn btn-primary">Create Event</button></a>
+        <a href="/admin/training/create" style="margin-bottom: 1em;"><button type="button" class="btn btn-primary">Create Event</button></a>
 
-        <div style="margin-top: 1em;">
-          <input type="week" id="week" name="week" value="2021-W14">
-          <a href="/admin/blog/create"><button type="button" class="btn btn-primary">Submit</button></a>
-        </div>
+        <form action="/admin/training" method="POST">
+          <div style="margin-top: 1em;">
+            <input type="week" id="week" name="week" value="2021-W14">
+            <a><button type="submit" class="btn btn-primary">Submit</button></a>
+          </div>
+        </form>
+
         
     </div>
   </div>

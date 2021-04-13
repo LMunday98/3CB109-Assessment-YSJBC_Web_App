@@ -103,10 +103,10 @@ def admin_blog_edit(id=None):
 def admin_blog_delete():
     return blog_controller.delete(request.method, request.form)
 
-@app.route('/admin/training')
+@app.route('/admin/training', methods = ['POST', 'GET'])
 @login_required
 def admin_training():
-    return event_controller.show('/admin')
+    return event_controller.show('/admin', request.method, request.form)
 
 
 
