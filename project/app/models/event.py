@@ -35,7 +35,7 @@ class Event(db.Model):
         return events
     
     @classmethod
-    def create(cls, title, event_type, event_start, event_end):
+    def create(cls, title, event_type, event_start=datetime.datetime.now(), event_end=datetime.datetime.now()):
         event = Event(title, event_type, event_start, event_end)
 
         # Actually add user to the database
