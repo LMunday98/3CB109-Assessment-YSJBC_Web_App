@@ -1,12 +1,18 @@
 from app.models.event import *
 from flask import render_template, redirect, request
 import datetime
+from datetime import datetime, timedelta
 
 def show(route):
     try:
-        url = route + '/training.html'
-        events = Event.query.order_by(Event.updated_at.desc()).all()
+        now = datetime.now()
+        monday_date = now - timedelta(days = now.weekday())
+        sunday_date = monday_date + timedelta(days=7)
 
+        monday_str = monday_date.strftime('%Y-%m-%d')
+        sunday_date = sunday_date.strftime('%Y-%m-%d')
+
+        events = Event.query.filter(Event.event_start.between(monday_str, sunday_date))
         event_dict = create_event_dict()
 
         for event in events:
@@ -16,6 +22,7 @@ def show(route):
 
         print(event_dict)
 
+        url = route + '/training.html'
         return render_template(url, events=events)
     except Exception as e:
         return(str(e))
