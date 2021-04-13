@@ -7,6 +7,7 @@
 {% block title %}Admin Training{% endblock %}
 
 {% block header %}
+<script>document.getElementsByTagName("html")[0].className += " js";</script>
 <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/timetable.css') }}">
 {% endblock %}
 
@@ -14,18 +15,18 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
-        <h1 class="card-title">Admin Training</h1>
-        <p class="card-text">Set the schudle using this page.</p>
+        <h1 class="card-title">Training Scheduler</h1>
+        
+
+        <a href="/admin/blog/create" style="margin-bottom: 1em;"><button type="button" class="btn btn-primary">Create Event</button></a>
+
+        <div style="margin-top: 1em;">
+          <input type="week" id="week" name="week" value="2021-W14">
+          <a href="/admin/blog/create"><button type="button" class="btn btn-primary">Submit</button></a>
+        </div>
+        
     </div>
   </div>
-
-  <script>document.getElementsByTagName("html")[0].className += " js";</script>
-  
-  <style>
-    .cd-schedule__event {
-      opacity: 1;
-    }
-  </style>
 
   <div class="card">
     <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">

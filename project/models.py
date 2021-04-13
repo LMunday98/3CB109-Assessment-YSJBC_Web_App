@@ -25,6 +25,8 @@ def seed():
             User.seed(fake)
         for _ in range(12):
             Blog.seed(fake,_+1)
+        for _ in range(5):
+            Event.seed(fake)
         return "Done!"
     except Exception as e:
         return(str(e))
