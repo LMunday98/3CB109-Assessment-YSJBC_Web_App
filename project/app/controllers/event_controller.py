@@ -5,12 +5,15 @@ from datetime import datetime, timedelta
 
 def show(route, method, form_data):
     try:
-        given_week = get_week(datetime.now())
+        now = datetime.now()
+        given_week = get_week(now)
+        calendar_week = now.strftime('%Y-W%W')
 
         if method == 'POST':
             new_week = form_data['week']
             converted_week = datetime.strptime(new_week + '-1', '%G-W%V-%u')
             given_week = get_week(converted_week)
+            calendar_week = new_week
 
         events = Event.query.filter(Event.event_start.between(given_week['Monday'], given_week['Sunday']))
         event_dict = create_event_dict()
@@ -23,7 +26,7 @@ def show(route, method, form_data):
         print(event_dict)
 
         url = route + '/training.html'
-        return render_template(url, events=events)
+        return render_template(url, events=events, calendar_week=calendar_week)
     except Exception as e:
         return(str(e))
 
