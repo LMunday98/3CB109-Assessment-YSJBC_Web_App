@@ -26,9 +26,11 @@ def seed():
             User.seed(fake)
         for _ in range(12):
             Blog.seed(fake,_+1)
-        start = datetime(2021, 4, 13, 9, 30, 0, 0)
-        end = datetime(2021, 4, 13, 10, 30, 0, 0)
-        Event.create("Rowing Water Session", "rowing", start, end)
+        Event.create("Rowing Water Session", "rowing", datetime(2021, 4, 12, 9, 30, 0, 0), datetime(2021, 4, 12, 10, 30, 0, 0))
+        Event.create("Rowing Water Session", "rowing", datetime(2021, 4, 13, 9, 30, 0, 0), datetime(2021, 4, 13, 10, 30, 0, 0))
+        Event.create("Rowing Water Session", "rowing", datetime(2021, 4, 14, 9, 30, 0, 0), datetime(2021, 4, 14, 10, 30, 0, 0))
+        Event.create("Rowing Water Session", "rowing", datetime(2021, 4, 15, 9, 30, 0, 0), datetime(2021, 4, 15, 10, 30, 0, 0))
+        Event.create("Rowing Water Session", "rowing", datetime(2021, 4, 16, 9, 30, 0, 0), datetime(2021, 4, 16, 10, 30, 0, 0))
         return "Done!"
     except Exception as e:
         return(str(e))

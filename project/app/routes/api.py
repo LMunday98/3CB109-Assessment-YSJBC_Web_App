@@ -10,6 +10,9 @@ from flask_login import login_user, current_user, logout_user
 # Import all controllers
 from app.controllers import *
 
+
+
+
 # Login manager
 @login_manager.user_loader
 def load_user(user_id):
@@ -19,6 +22,9 @@ def load_user(user_id):
 def unauthorized_handler():
     return render_template("auth/login.html", msg="Please login to continue!")
     
+
+
+
 # Define public api calls
 @app.route('/blog')
 def blog_view_all(id=None):
@@ -27,6 +33,9 @@ def blog_view_all(id=None):
 @app.route('/blog/<id>')
 def blog_view_one(id=None):
     return blog_controller.get(id, "public", "ViewOne")
+
+
+
 
 # Define auth api calls
 @app.route('/login', methods = ['POST', 'GET'])
@@ -41,6 +50,9 @@ def register():
 def logout():
     return auth_controller.logout()
 
+
+
+
 # Define user api calls
 @app.route('/user/home')
 @login_required
@@ -51,6 +63,9 @@ def user_home():
 @login_required
 def user_training():
     return render_template('user/training.html')
+
+
+
 
 # Define admin api calls
 @app.route('/admin/home')
@@ -91,7 +106,10 @@ def admin_blog_delete():
 @app.route('/admin/training')
 @login_required
 def admin_training():
-    return render_template('admin/training.html')
+    return event_controller.show('/admin')
+
+
+
 
 # Define admin blog api calls
 @app.route('/blog/create', methods = ['POST', 'GET'])
@@ -103,6 +121,9 @@ def blog_create():
 @login_required
 def blog_update():
     return blog_controller.update(request.method, request.form)
+
+
+
 
 # Admin user management calls
 @app.route('/admin/users')
