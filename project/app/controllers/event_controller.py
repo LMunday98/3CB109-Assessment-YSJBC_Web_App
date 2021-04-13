@@ -1,5 +1,6 @@
 from app.models.event import *
 from flask import render_template, redirect, request
+import json
 import datetime
 from datetime import datetime, timedelta
 
@@ -15,18 +16,18 @@ def show(route, method, form_data):
             given_week = get_week(converted_week)
             calendar_week = new_week
 
-        events = Event.query.filter(Event.event_start.between(given_week['Monday'], given_week['Sunday']))
+        events = Event.query.filter(Event.event_start.between(given_week['Monday'], given_week['Sunday'])).all()
         event_dict = create_event_dict()
 
         for event in events:
             event_day = event.event_start.strftime("%A")
             dict_day = event_dict[event_day]
+            event.event_start = event.event_start.strftime("%H:%M")
+            event.event_end = event.event_end.strftime("%H:%M")
             dict_day.append(event)
 
-        print(event_dict)
-
         url = route + '/training.html'
-        return render_template(url, events=events, calendar_week=calendar_week)
+        return render_template(url, calendar_week=calendar_week, events=event_dict)
     except Exception as e:
         return(str(e))
 
