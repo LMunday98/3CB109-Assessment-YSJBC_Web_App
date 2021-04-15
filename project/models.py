@@ -26,6 +26,8 @@ def seed():
             User.seed(fake)
         for _ in range(12):
             Blog.seed(fake,_+1)
+        # Sunday
+        Event.create("Water Session", "event-1", datetime.date(2021, 4, 11), datetime.time(9, 30), datetime.time(10, 30))
         # Monday
         Event.create("Water Session", "event-1", datetime.date(2021, 4, 12), datetime.time(9, 30), datetime.time(10, 30))
         Event.create("Erg", "event-2", datetime.date(2021, 4, 12), datetime.time(11, 30), datetime.time(13, 45))
@@ -41,6 +43,10 @@ def seed():
         Event.create("Yoga", "event-4", datetime.date(2021, 4, 15),  datetime.time(17, 30), datetime.time(18, 30))
         # Friday
         Event.create("Water Session", "event-1", datetime.date(2021, 4, 16),  datetime.time(9, 30), datetime.time(10, 30))
+        # Saturday
+        Event.create("Water Session", "event-1", datetime.date(2021, 4, 17),  datetime.time(9, 30), datetime.time(10, 30))
+        # Sunday
+        Event.create("Water Session", "event-1", datetime.date(2021, 4, 18),  datetime.time(9, 30), datetime.time(10, 30))
         # Monday
         Event.create("Water Session", "event-1", datetime.date(2021, 4, 19),  datetime.time(9, 30), datetime.time(10, 30))
         return "Done!"

@@ -2,13 +2,13 @@ from app.models.event import *
 from flask import render_template, redirect, request
 import json
 import datetime
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 def show(route, method, form_data):
     try:
-        now = datetime.now()
-        given_week = get_week(now)
-        calendar_week = now.strftime('%Y-W%W')
+        today = datetime.date.today()
+        given_week = get_week(today)
+        calendar_week = today.strftime('%Y-W%W')
 
         if method == 'POST':
             new_week = form_data['week']
@@ -16,15 +16,17 @@ def show(route, method, form_data):
             given_week = get_week(converted_week)
             calendar_week = new_week
 
-        events = Event.query.filter(Event.event_start.between(given_week['Monday'], given_week['Sunday'])).all()
+        events = Event.query.filter(Event.event_date.between(given_week['Monday'], given_week['Sunday'])).all()
         event_dict = create_event_dict()
 
         for event in events:
-            event_day = event.event_start.strftime("%A")
+            event_day = event.event_date.strftime("%A")
             dict_day = event_dict[event_day]
             event.event_start = event.event_start.strftime("%H:%M")
             event.event_end = event.event_end.strftime("%H:%M")
             dict_day.append(event)
+
+        print(event_dict)
 
         url = route + '/training.html'
         return render_template(url, calendar_week=calendar_week, events=event_dict)
@@ -33,7 +35,9 @@ def show(route, method, form_data):
 
 def get_week(given_date):
     monday_date = given_date - timedelta(days = given_date.weekday())
-    sunday_date = monday_date + timedelta(days=7)
+    sunday_date = monday_date + timedelta(days=6)
+    print('monday_date', monday_date)
+    print('sunday_date', sunday_date)
     return {'Monday' : monday_date.strftime('%Y-%m-%d'), 'Sunday' : sunday_date.strftime('%Y-%m-%d')}
 
 def create_event_dict():
