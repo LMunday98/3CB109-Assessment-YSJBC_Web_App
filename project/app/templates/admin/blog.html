@@ -21,22 +21,22 @@
         </div>
       </div>
 
-      {% from "components/blog_rows.html" import create_blog_rows with context %}
+      {% from "components/blog/blog_rows.html" import create_blog_rows with context %}
       {{ create_blog_rows(blogs) }}
     {% endif %}
 
     {% if action == "ViewOne" %}
-      {% from "components/blog_view.html" import create_blog_view with context %}
+      {% from "components/blog/blog_view.html" import create_blog_view with context %}
       {{ create_blog_view(blog) }}
     {% endif %}
 
     {% if action == "Create" %}
-      {% from "components/blog_form.html" import create_blog_form with context %}
+      {% from "components/blog/blog_form.html" import create_blog_form with context %}
       {{ create_blog_form('') }}
     {% endif %}
 
     {% if action == "Edit" %}
-      {% from "components/blog_form.html" import create_blog_form with context %}
+      {% from "components/blog/blog_form.html" import create_blog_form with context %}
       {{ create_blog_form(blog) }}
     {% endif %}
 

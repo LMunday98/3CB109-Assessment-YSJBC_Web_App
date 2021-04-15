@@ -8,17 +8,19 @@ class Blog(db.Model):
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
 
-    # User attributes
+    # Blog attributes
     title = db.Column(db.String(128))
     desc = db.Column(db.Text)
     body = db.Column(db.Text)
+    thumbnail = db.Column(db.String(128))
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
-    def __init__(self, title, desc, body):
+    def __init__(self, title, desc, body, thumbnail):
         self.title = title
         self.desc = desc
         self.body = body
+        self.thumbnail = thumbnail
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
 
@@ -33,8 +35,8 @@ class Blog(db.Model):
         return blogs
     
     @classmethod
-    def create(cls, title, desc, body):
-        blog = Blog(title, desc, body)
+    def create(cls, title, desc, body, thumbnail='blog1.jpg'):
+        blog = Blog(title, desc, body, thumbnail)
 
         # Actually add user to the database
         db.session.add(blog)
@@ -58,8 +60,9 @@ class Blog(db.Model):
         db.session.commit()
 
     @classmethod
-    def seed(cls, fake):
+    def seed(cls, fake, thumb_id):
         title = fake.sentence()
         desc = fake.sentence()
         body = fake.text()
-        cls.create(title, desc, body)
+        thumbnail = "blog" + str(thumb_id) + ".jpg"
+        cls.create(title, desc, body, thumbnail)
