@@ -1,18 +1,17 @@
 from app.models.event import *
 from flask import render_template, redirect, request
-import json
-import datetime
-from datetime import timedelta
+from datetime import date, time, datetime, timedelta
 
 def show(route, method, form_data):
     try:
-        today = datetime.date.today()
+        today = date.today()
         given_week = get_week(today)
         calendar_week = today.strftime('%Y-W%W')
 
         if method == 'POST':
             new_week = form_data['week']
             converted_week = datetime.strptime(new_week + '-1', '%G-W%V-%u')
+            print(converted_week)
             given_week = get_week(converted_week)
             calendar_week = new_week
 
@@ -36,8 +35,6 @@ def show(route, method, form_data):
 def get_week(given_date):
     monday_date = given_date - timedelta(days = given_date.weekday())
     sunday_date = monday_date + timedelta(days=6)
-    print('monday_date', monday_date)
-    print('sunday_date', sunday_date)
     return {'Monday' : monday_date.strftime('%Y-%m-%d'), 'Sunday' : sunday_date.strftime('%Y-%m-%d')}
 
 def create_event_dict():
