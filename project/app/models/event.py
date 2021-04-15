@@ -11,14 +11,16 @@ class Event(db.Model):
     # Event attributes
     title = db.Column(db.String(128))
     event_type = db.Column(db.String(128))
-    event_start = db.Column(db.DateTime)
-    event_end = db.Column(db.DateTime)
+    event_date = db.Column(db.Date)
+    event_start = db.Column(db.Time)
+    event_end = db.Column(db.Time)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
-    def __init__(self, title, event_type, event_start, event_end):
+    def __init__(self, title, event_type, event_date, event_start, event_end):
         self.title = title
         self.event_type = event_type
+        self.event_date = event_date
         self.event_start = event_start
         self.event_end = event_end
         self.created_at = datetime.datetime.now()
@@ -35,10 +37,10 @@ class Event(db.Model):
         return events
     
     @classmethod
-    def create(cls, title, event_type, event_start=datetime.datetime.now(), event_end=datetime.datetime.now()):
-        event = Event(title, event_type, event_start, event_end)
+    def create(cls, title, event_type, event_date=datetime.date.today(), event_start=datetime.datetime.now().time(), event_end=datetime.datetime.now().time()):
+        event = Event(title, event_type, event_date, event_start, event_end)
 
-        # Actually add user to the database
+        # Actually add event to the database
         db.session.add(event)
 
         # Save all pending changes to the database
@@ -46,9 +48,10 @@ class Event(db.Model):
 
         return event
 
-    def update(self, title, event_type, event_start, event_end):
+    def update(self, title, event_type, event_date, event_start, event_end):
         self.title = title
         self.event_type = event_type
+        self.event_date = event_date
         self.event_start = event_start
         self.event_end = event_end
         self.updated_at = datetime.datetime.now()
@@ -64,6 +67,7 @@ class Event(db.Model):
     def seed(cls, fake):
         title = fake.sentence()
         event_type = fake.sentence()
-        event_start = datetime.datetime.now()
-        event_end = datetime.datetime.now()
-        cls.create(title, event_type, event_start, event_end)
+        event_date = datetime.date.today()
+        event_start = datetime.datetime.now().time()
+        event_end = datetime.datetime.now().time()
+        cls.create(title, event_type, event_date, event_start, event_end)
