@@ -1,0 +1,45 @@
+{% macro create_event_form(event) %}
+  <a href="/admin/training" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Back</a>
+
+  <div class="card">
+
+    <div class="card-body">
+
+      <h1 class="card-title">{{ action }} an Event</h1>
+    
+      <form action="" method="POST" name="event_form" id="event_form">
+        <div class="mb-3">
+            <label for="title" class="form-label">Event Type</label>
+            <select class="form-control" name="title" id="title" required>
+                <option value="Water Session">Water Session</option>
+                <option value="Erg">Erg</option>
+                <option value="Weight Training">Weight Training</option>
+                <option value="Yoga">Yoga</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="time" class="form-control" name="date" id="date" value="{{ get_val(event.event_date) }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="start" class="form-label">Event Start Time</label>
+            <input type="date" class="form-control" name="start" id="start" value="{{ get_val(event.event_start) }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="end" class="form-label">Event Finish Time</label>
+            <input type="date" class="form-control" name="end" id="end" value="{{ get_val(event.event_end) }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+
+  </div>
+
+{% endmacro %}
+
+{% macro get_val(value) %}
+{% if action == "Edit" %}
+{{ value }}
+{% endif %}
+{% endmacro %}

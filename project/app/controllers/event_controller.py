@@ -11,7 +11,6 @@ def show(route, method, form_data):
         if method == 'POST':
             new_week = form_data['week']
             converted_week = datetime.strptime(new_week + '-1', '%G-W%V-%u')
-            print(converted_week)
             given_week = get_week(converted_week)
             calendar_week = new_week
 
@@ -25,10 +24,8 @@ def show(route, method, form_data):
             event.event_end = event.event_end.strftime("%H:%M")
             dict_day.append(event)
 
-        print(event_dict)
-
         url = route + '/training.html'
-        return render_template(url, calendar_week=calendar_week, events=event_dict)
+        return render_template(url, calendar_week=calendar_week, events=event_dict, action="Show")
     except Exception as e:
         return(str(e))
 
