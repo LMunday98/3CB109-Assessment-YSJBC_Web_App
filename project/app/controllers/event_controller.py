@@ -2,7 +2,7 @@ from app.models.event import *
 from flask import render_template, redirect, request
 from datetime import date, time, datetime, timedelta
 
-def show(route, method, form_data):
+def show(route, method, form_data, msg="", msg_colour=""):
     try:
         today = date.today()
         given_week = get_week(today)
@@ -25,7 +25,7 @@ def show(route, method, form_data):
             dict_day.append(event)
 
         url = route + '/training.html'
-        return render_template(url, calendar_week=calendar_week, events=event_dict, action="Show")
+        return render_template(url, calendar_week=calendar_week, events=event_dict, action="Show", msg=msg, msg_colour=msg_colour)
     except Exception as e:
         return(str(e))
 
