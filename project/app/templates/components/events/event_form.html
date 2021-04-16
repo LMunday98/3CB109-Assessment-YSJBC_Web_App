@@ -20,15 +20,15 @@
         </div>
         <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input type="time" class="form-control" name="date" id="date" value="{{ get_val(event.event_date) }}" required>
+            <input type="date" class="form-control" name="date" id="date" value="{{ get_val(event.event_date) }}" required>
         </div>
         <div class="mb-3">
             <label for="start" class="form-label">Event Start Time</label>
-            <input type="date" class="form-control" name="start" id="start" value="{{ get_val(event.event_start) }}" required>
+            <input type="time" class="form-control" name="start" id="start" value="{{ get_val(event.event_start) }}" required>
         </div>
         <div class="mb-3">
             <label for="end" class="form-label">Event Finish Time</label>
-            <input type="date" class="form-control" name="end" id="end" value="{{ get_val(event.event_end) }}" required>
+            <input type="time" class="form-control" name="end" id="end" value="{{ get_val(event.event_end) }}" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
