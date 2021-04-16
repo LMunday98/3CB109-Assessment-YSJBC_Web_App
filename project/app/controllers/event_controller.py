@@ -33,15 +33,12 @@ def create(method, form_data):
     try:
         if method == 'POST':
             event_title = form_data['title']
+            event_type = get_event_type(event_title)
             event_date = form_data['date']
             event_start = form_data['start']
             event_end = form_data['end']
 
-            print (event_title)
-            print (event_date)
-            print (event_start)
-            print (event_end)
-
+            Event.create(event_title, event_type, event_date, event_start, event_end)
             return redirect('/admin/training')
         else:
             return render_template('admin/training.html', action="Create")
@@ -52,6 +49,15 @@ def get_week(given_date):
     monday_date = given_date - timedelta(days = given_date.weekday())
     sunday_date = monday_date + timedelta(days=6)
     return {'Monday' : monday_date.strftime('%Y-%m-%d'), 'Sunday' : sunday_date.strftime('%Y-%m-%d')}
+
+def get_event_type(event_title):
+    type_dict = {
+        'Water Session' : 'event-1',
+        'Erg' : 'event-2',
+        'Weight Training' : 'event-3',
+        'Yoga' : 'event-4'
+    }
+    return type_dict[event_title]
 
 def create_event_dict():
     event_dict = {
