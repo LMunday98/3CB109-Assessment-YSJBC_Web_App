@@ -108,10 +108,10 @@ def admin_blog_delete():
 def admin_training():
     return event_controller.show('/admin', request.method, request.form)
 
-@app.route('/admin/training/create')
+@app.route('/admin/training/create', methods=['GET', 'POST'])
 @login_required
 def admin_event_create():
-    return render_template('admin/training.html', action="Create")
+    return event_controller.create(request.method, request.form)
 
 
 

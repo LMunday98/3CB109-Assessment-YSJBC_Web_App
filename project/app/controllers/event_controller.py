@@ -29,6 +29,25 @@ def show(route, method, form_data):
     except Exception as e:
         return(str(e))
 
+def create(method, form_data):
+    try:
+        if method == 'POST':
+            event_title = form_data['title']
+            event_date = form_data['date']
+            event_start = form_data['start']
+            event_end = form_data['end']
+
+            print (event_title)
+            print (event_date)
+            print (event_start)
+            print (event_end)
+
+            return redirect('/admin/training')
+        else:
+            return render_template('admin/training.html', action="Create")
+    except Exception as e:
+        return(str(e))
+
 def get_week(given_date):
     monday_date = given_date - timedelta(days = given_date.weekday())
     sunday_date = monday_date + timedelta(days=6)
