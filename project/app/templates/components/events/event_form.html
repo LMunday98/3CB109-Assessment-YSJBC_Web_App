@@ -6,12 +6,13 @@
     <div class="card-body">
 
       <h1 class="card-title">{{ action }} an Event</h1>
+      <h3 class="card-text text-{{ msg_colour }}">{{ msg }}</h3>
     
       <form action="/admin/training/create" method="POST" name="event_form" id="event_form">
         <div class="mb-3">
             <label for="title" class="form-label">Event Type</label>
             <select class="form-control" name="title" id="title" required>
-                <option value="Null" selected="selected" disabled >Please select an option</option>
+                <option value="Default" selected="selected">Please select an option</option>
                 <option value="Water Session">Water Session</option>
                 <option value="Erg">Erg</option>
                 <option value="Weight Training">Weight Training</option>

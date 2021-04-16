@@ -33,11 +33,14 @@ def create(method, form_data):
     try:
         if method == 'POST':
             event_title = form_data['title']
-            event_type = get_event_type(event_title)
             event_date = form_data['date']
             event_start = form_data['start']
             event_end = form_data['end']
 
+            if event_title == 'Default':
+                return render_template('admin/training.html', action="Create", msg="Please select an event type", msg_colour="danger")
+
+            event_type = get_event_type(event_title)
             Event.create(event_title, event_type, event_date, event_start, event_end)
             return redirect('/admin/training')
         else:
