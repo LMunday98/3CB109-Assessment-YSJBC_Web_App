@@ -1,0 +1,51 @@
+<!-- form.html-->
+
+{% extends "base.html" %}
+
+{% set admin_nav = True %}
+{% set active_page = "users" %}
+{% block title %}Users{% endblock %}
+
+{% from "components/user_management/create_button.html" import create_button with context %}
+
+{% block body %}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+        <h1 class="card-title">User Manager</h1>
+        <h3 class="card-text text-{{ msg_colour }}">{{ msg }}</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Approved Accounts</h3>
+        {% for user in approved_users %}
+        <div class="row">
+          <p class="card-text col-6">{{ user.email }}</p>
+          <div class="col row justify-content-center">
+            {{ create_button(user, 'unapprove', 'Unapprove Account', 'btn-warning') }}
+            <div class="col"></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Guest Accounts</h3>
+        {% for user in guest_users %}
+          <div class="row">
+            <p class="card-text col-6">{{ user.email }}</p>
+            <div class="col row justify-content-center">
+              {{ create_button(user, 'approve', 'Approve Account', 'btn-success') }}
+              {{ create_button(user, 'delete', 'Delete Account', 'btn-danger') }}
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

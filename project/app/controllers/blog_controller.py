@@ -1,5 +1,7 @@
 from app.models.blog import *
-from flask import render_template, redirect
+from flask import render_template, redirect, request
+
+import os
 
 def create(method, form_data):
     if method == 'POST':
@@ -7,7 +9,17 @@ def create(method, form_data):
             new_title = form_data['title']
             new_desc = form_data['desc']
             new_body = form_data['body']
-            Blog.create(new_title, new_desc, new_body)
+            uploaded_file = request.files['thumbnail']
+
+            if uploaded_file.filename != '':
+                latest_blog = Blog.query.order_by(Blog.id.desc()).first()
+                new_file_name = 'blog' + str(int(latest_blog.id) + 1)
+                new_file_ext = '.' + uploaded_file.filename.split('.')[-1]
+
+                new_file_path = new_file_name + new_file_ext
+                uploaded_file.save('app/static/blog_thumbnails/' + new_file_path)
+
+            Blog.create(new_title, new_desc, new_body, new_file_path)
         except Exception as e:
             return(str(e))
 
@@ -20,8 +32,14 @@ def update(method, form_data):
             new_title = form_data['title']
             new_desc = form_data['desc']
             new_body = form_data['body']
+            uploaded_file = request.files['thumbnail']
 
             current_blog = Blog.get(id)
+
+            if uploaded_file.filename != '':
+                new_file_path = current_blog.thumbnail
+                uploaded_file.save('app/static/blog_thumbnails/' + new_file_path)
+
             current_blog.update(new_title, new_desc, new_body)
         except Exception as e:
             return(str(e))
@@ -45,7 +63,11 @@ def get(id, route, action="ViewAll"):
 def delete(method, form_data):
     if (method == 'POST') :
         try:
-            Blog.delete(form_data['delete_id'])
+            id = form_data['delete_id']
+            delete_blog = Blog.get(id)
+            thumbnail_path = delete_blog.thumbnail
+            os.remove('app/static/blog_thumbnails/' + thumbnail_path)
+            Blog.delete(id)
         except Exception as e:
             return(str(e))
 

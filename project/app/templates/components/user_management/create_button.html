@@ -1,0 +1,8 @@
+{% macro create_button(user, action, button_label, colour) %}
+
+<form action="/admin/users/{{ action }}" method="POST" class="action-form col" style="padding: 0em;">
+  <input type="text" style="display: none;" name="{{ action }}_id" id="{{ action }}_id" value="{{ user.id }}">
+  <a class="d-flex justify-content-center" style="text-decoration: none;"><button type="submit" class="btn {{ colour }} align-middle" onclick="return confirm('Are you sure you want to {{ action }} this account?');">{{ button_label }}</button></a>
+</form>
+
+{% endmacro %}

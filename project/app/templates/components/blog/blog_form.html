@@ -7,20 +7,25 @@
 
       <h1 class="card-title">{{ action }} a Blog Post</h1>
     
-      <form action={{ get_form_action() }} method="POST" name="blog_form" id="blog_form">
+      <form action={{ get_form_action() }} method="POST" enctype="multipart/form-data" name="blog_form" id="blog_form">
         <input type="text" class="form-control" name="id" id="id" value="{{ get_val(blog.id) }}" style="display: none;">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" name="title" id="title" value="{{ get_val(blog.title) }}">
+          <input type="text" class="form-control" name="title" id="title" value="{{ get_val(blog.title) }}" required>
         </div>
         <div class="mb-3">
           <label for="desc" class="form-label">Desc</label>
-          <input type="text" class="form-control" name="desc" id="desc" value="{{ get_val(blog.desc) }}">
+          <input type="text" class="form-control" name="desc" id="desc" value="{{ get_val(blog.desc) }}" required>
         </div>
         <div class="mb-3">
           <label for="body" class="form-label">Body</label>
-          <textarea id="body" name="body"  class="form-control" form="blog_form">{{ get_val(blog.body) }}</textarea>
+          <textarea id="body" name="body"  class="form-control" form="blog_form" required>{{ get_val(blog.body) }}</textarea>
         </div>
+        <div class="mb-3">
+          <label for="thumbnail" class="form-label">Blog Thumbnail</label>
+          {{ create_thumbnail_input(blog) }}
+        </div>
+        <hr>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
@@ -28,6 +33,15 @@
 
   </div>
 
+{% endmacro %}
+
+{% macro create_thumbnail_input(blog) %}
+{% if action == "Edit" %}
+<p class="form-label">Current: {{ blog.thumbnail }}</p>
+<input id="thumbnail" name="thumbnail" type="file" accept="image/*">
+{% else %}
+<input id="thumbnail" name="thumbnail" type="file" accept="image/*" required>
+{% endif %}
 {% endmacro %}
 
 {% macro get_val(value) %}

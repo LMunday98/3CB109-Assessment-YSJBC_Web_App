@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     # User attributes
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    account_type = db.Column(db.String(8), unique=False, default="user")
+    account_type = db.Column(db.String(8), unique=False, default="guest")
     authenticated = db.Column(db.Boolean, default=False)
 
     def __init__(self, email, password, account_type):
@@ -28,8 +28,14 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
 
+    def check_verified(self):
+        if self.account_type == 'guest':
+            return False
+        else:
+            return True
+
     @classmethod
-    def create(cls, new_email, new_password, account_type="user"):
+    def create(cls, new_email, new_password, account_type="guest"):
         user = User(new_email, new_password, account_type)
 
         # Actually add user to the database
@@ -46,9 +52,9 @@ class User(UserMixin, db.Model):
         return user
 
     @classmethod
-    def seed(cls, fake):
+    def seed(cls, fake, account_type="guest"):
         email = fake.email()
-        cls.create(email, email)
+        cls.create(email, email, account_type)
 
     def is_active(self):
         """True, as all users are active."""
@@ -67,3 +73,13 @@ class User(UserMixin, db.Model):
     def is_anonymous(self):
         """False, as anonymous users aren't supported."""
         return False
+
+    def set_account_type(self, account_type):
+        self.account_type = account_type
+        db.session.commit()
+
+    @staticmethod
+    def delete(id):
+        user = User.query.filter_by(id=id).first()
+        db.session.delete(user)
+        db.session.commit()
