@@ -24,7 +24,7 @@ def seed():
             User.seed(fake, 'user')
         for _ in range(5):
             User.seed(fake)
-        for _ in range(12):
+        for _ in range(4):
             Blog.seed(fake,_+1)
         week_dates = get_week(date.today())
         # Monday
