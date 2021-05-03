@@ -58,6 +58,14 @@ def edit(id):
     except Exception as e:
         return(str(e))
 
+def update(method, form_data):
+    if method == 'POST':
+        try:
+            x=1
+        except Exception as e:
+            return(str(e))
+    return redirect('/admin/training')
+
 def delete(method, form_data):
     if method == 'POST':
         try:

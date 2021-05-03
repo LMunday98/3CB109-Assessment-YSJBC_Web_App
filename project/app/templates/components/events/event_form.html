@@ -8,7 +8,7 @@
       <h1 class="card-title">{{ action }} an Event</h1>
       <h3 class="card-text text-{{ msg_colour }}">{{ msg }}</h3>
     
-      <form action="/admin/training/create" method="POST" name="event_form" id="event_form">
+      <form action={{ get_form_action() }} method="POST" name="event_form" id="event_form">
         <div class="mb-3">
             <label for="title" class="form-label">Event Type</label>
             <select class="form-control" name="title" id="title" required>
@@ -36,8 +36,13 @@
 
 {% endmacro %}
 
-<!-- This macro has to be a single line for the default values of the inputs to be correctly set -->
-{% macro get_val(value) %}{% if action == "Edit" %}{{ value }}{% endif %}{% endmacro %}
+{% macro get_form_action() %}
+{% if action == "Edit" %}
+"/admin/training/update"
+{% else %}
+"/admin/training/create"
+{% endif %}
+{% endmacro %}
 
 {% macro create_event_types() %}
   {% set event_types = [
@@ -64,3 +69,6 @@
     selected="selected"
   {% endif %}
 {% endmacro %}
+
+<!-- This macro has to be a single line for the default values of the inputs to be correctly set -->
+{% macro get_val(value) %}{% if action == "Edit" %}{{ value }}{% endif %}{% endmacro %}

@@ -167,6 +167,11 @@ def admin_training_edit_catch_bad_url():
 def admin_training_edit(id=None):
     return event_controller.edit(id)
 
+@app.route('/admin/training/update', methods = ['POST', 'GET'])
+@login_required
+def admin_training_update():
+    return event_controller.update(request.method, request.form)
+
 @app.route('/admin/training/delete', methods = ['POST', 'GET'])
 @login_required
 def admin_training_delete():
