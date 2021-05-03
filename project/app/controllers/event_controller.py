@@ -17,8 +17,6 @@ def show(route, method, form_data, msg="", msg_colour=""):
         events = Event.query.filter(Event.event_date.between(given_week['Monday'], given_week['Sunday'])).order_by(Event.event_start.asc()).all()
         event_dict = create_event_dict()
 
-        print(events)
-
         for event in events:
             event_day = event.event_date.strftime("%A")
             dict_day = event_dict[event_day]
@@ -28,8 +26,8 @@ def show(route, method, form_data, msg="", msg_colour=""):
 
         week_dict = {}
 
+        # Get month and day number
         for day in given_week:
-            # Get month and day number
             converted_date = datetime.strptime(given_week[day], '%Y-%m-%d')
             day_num = converted_date.strftime("%d")
             month = converted_date.strftime("%B")
@@ -50,6 +48,9 @@ def create(method, form_data):
 
             if event_title == 'Default':
                 return render_template('admin/training.html', action="Create", msg="Please select an event type", msg_colour="danger")
+
+            if event_start > event_end:
+                return render_template('admin/training.html', action="Create", msg="Please make sure the event start time is earlier the event end!", msg_colour="danger")
 
             event_type = get_event_type(event_title)
             Event.create(event_title, event_type, event_date, event_start, event_end)
@@ -79,7 +80,8 @@ def update(method, form_data):
             event_end = form_data['end']
 
             current_event = Event.get(id)
-            print(current_event)
+            if event_start > event_end:
+                return render_template('admin/training.html', event=current_event, action="Edit", msg="Please make sure the event start time is earlier the event end!", msg_colour="danger")
             
             event_type = get_event_type(event_title)
             current_event.update(event_title, event_type, event_date, event_start, event_end)
@@ -101,7 +103,7 @@ def get_week(given_date):
     monday_date = given_date - timedelta(days = given_date.weekday())
     week_dict = {}
 
-    # Tuesday -> Sunday
+    # Monday -> Sunday
     for day_index in range(0,7):
         new_date = monday_date + timedelta(days=day_index)
         week_dict[days[day_index]] = new_date.strftime('%Y-%m-%d')
