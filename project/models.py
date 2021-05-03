@@ -57,11 +57,11 @@ def seed():
 
         blog3 = {'title' : 'Club AGM',
         'desc' : 'The new 2021/2022 boat club committee!',
-        'body' : "Congratulations to the new club exec! I'm sure you'll all do an amazing job in the new year and a big thank you to everyone who participated and voted!",
+        'body' : "Congratulations to the new club exec! We're sure you'll all do an amazing job in the new year and a big thank you to everyone who participated and voted!",
         'datetime' : datetime(2021, 5, 12, 11, 27)}
 
         blog4 = {'title' : 'Big win for YSJ!',
-        'desc' : 'YSJBC smash head of the river competition',
+        'desc' : 'YSJBC smash head of the river competition!',
         'body' : 'Today was a big day for the boat club, as we take home the win at the annual competition between York University Boat Club, York City Boat Club and ourselves!',
         'datetime' : datetime(2021, 5, 19, 9, 55)}
 
