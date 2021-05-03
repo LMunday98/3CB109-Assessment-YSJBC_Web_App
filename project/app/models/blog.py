@@ -1,6 +1,6 @@
 from app import db
 from shutil import copyfile
-import datetime, os
+import datetime
 
 class Blog(db.Model):
     __tablename__ = 'blogs'

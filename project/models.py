@@ -2,6 +2,7 @@ from app import db
 from app.models import *
 from faker import Faker
 from datetime import date, time, datetime, timedelta
+import os, shutil
 
 def migrate():
     print ("Migrating database...")
@@ -31,6 +32,19 @@ def seed():
         static_path = dir_path + '/app/static/'
         src_thumb_path = static_path + 'seed_thumbnails'
         dst_thumb_path = static_path + 'blog_thumbnails'
+
+        access_rights = 0o755
+
+        try:
+            shutil.rmtree(dst_thumb_path)
+        except Exception as e:
+            print(e)
+
+        try:
+            os.mkdir(dst_thumb_path, access_rights)
+        except Exception as e:
+            print(e)
+
         for _ in range(4):
             Blog.seed(fake,_+1,src_thumb_path,dst_thumb_path)
 
