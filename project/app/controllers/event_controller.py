@@ -14,8 +14,10 @@ def show(route, method, form_data, msg="", msg_colour=""):
             given_week = get_week(converted_week)
             calendar_week = new_week
 
-        events = Event.query.filter(Event.event_date.between(given_week['Monday'], given_week['Sunday'])).all()
+        events = Event.query.filter(Event.event_date.between(given_week['Monday'], given_week['Sunday'])).order_by(Event.event_start.asc()).all()
         event_dict = create_event_dict()
+
+        print(events)
 
         for event in events:
             event_day = event.event_date.strftime("%A")
@@ -25,13 +27,14 @@ def show(route, method, form_data, msg="", msg_colour=""):
             dict_day.append(event)
 
         week_dict = {}
+
         for day in given_week:
+            # Get month and day number
             converted_date = datetime.strptime(given_week[day], '%Y-%m-%d')
             day_num = converted_date.strftime("%d")
             month = converted_date.strftime("%B")
             week_dict[day] = {'Date' : day_num, 'Month' : month}
-
-        print (week_dict)
+            
         url = route + '/training.html'
         return render_template(url, calendar_week=calendar_week, week_dict=week_dict, events=event_dict, action="Show", msg=msg, msg_colour=msg_colour)
     except Exception as e:
