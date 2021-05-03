@@ -24,8 +24,16 @@ def show(route, method, form_data, msg="", msg_colour=""):
             event.event_end = event.event_end.strftime("%H:%M")
             dict_day.append(event)
 
+        week_dict = {}
+        for day in given_week:
+            converted_date = datetime.strptime(given_week[day], '%Y-%m-%d')
+            day_num = converted_date.strftime("%d")
+            month = converted_date.strftime("%B")
+            week_dict[day] = {'Date' : day_num, 'Month' : month}
+
+        print (week_dict)
         url = route + '/training.html'
-        return render_template(url, calendar_week=calendar_week, events=event_dict, action="Show", msg=msg, msg_colour=msg_colour)
+        return render_template(url, calendar_week=calendar_week, week_dict=week_dict, events=event_dict, action="Show", msg=msg, msg_colour=msg_colour)
     except Exception as e:
         return(str(e))
 
@@ -88,10 +96,10 @@ def delete(method, form_data):
 def get_week(given_date):
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     monday_date = given_date - timedelta(days = given_date.weekday())
-    week_dict = {'Monday' : monday_date.strftime('%Y-%m-%d')}
+    week_dict = {}
 
     # Tuesday -> Sunday
-    for day_index in range(1,7):
+    for day_index in range(0,7):
         new_date = monday_date + timedelta(days=day_index)
         week_dict[days[day_index]] = new_date.strftime('%Y-%m-%d')
 
