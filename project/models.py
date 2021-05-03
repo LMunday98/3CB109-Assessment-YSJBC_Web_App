@@ -1,7 +1,7 @@
 from app import db
 from app.models import *
 from faker import Faker
-import datetime
+from datetime import date, time, datetime, timedelta
 
 def migrate():
     print ("Migrating database...")
@@ -26,32 +26,41 @@ def seed():
             User.seed(fake)
         for _ in range(12):
             Blog.seed(fake,_+1)
-        # Sunday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 11), datetime.time(9, 30), datetime.time(10, 30))
+        week_dates = get_week(date.today())
         # Monday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 12), datetime.time(9, 30), datetime.time(10, 30))
-        Event.create("Erg", "event-orange", datetime.date(2021, 4, 12), datetime.time(11, 30), datetime.time(13, 45))
-        Event.create("Yoga", "event-green", datetime.date(2021, 4, 12), datetime.time(14, 00), datetime.time(15, 00))
+        Event.create("Water Session", "event-blue", week_dates['Monday'], time(9, 30), time(10, 30))
+        Event.create("Erg", "event-orange", week_dates['Monday'], time(11, 30), time(13, 45))
+        Event.create("Yoga", "event-green", week_dates['Monday'], time(14, 00), time(15, 00))
         # Tuesday
-        Event.create("Weight Training", "event-purple", datetime.date(2021, 4, 13),  datetime.time(12, 30), datetime.time(14, 0))
-        Event.create("Yoga", "event-green", datetime.date(2021, 4, 13),  datetime.time(14, 30), datetime.time(15, 30))
+        Event.create("Weight Training", "event-purple", week_dates['Tuesday'],  time(12, 30), time(14, 0))
+        Event.create("Yoga", "event-green", week_dates['Tuesday'],  time(14, 30), time(15, 30))
         # Wednesday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 14),  datetime.time(9, 30), datetime.time(12, 30))
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 14),  datetime.time(13, 30), datetime.time(16, 30))
+        Event.create("Water Session", "event-blue", week_dates['Wednesday'],  time(9, 30), time(12, 30))
+        Event.create("Water Session", "event-blue", week_dates['Wednesday'],  time(13, 30), time(16, 30))
         # Thursday
-        Event.create("Erg", "event-orange", datetime.date(2021, 4, 15),  datetime.time(15, 30), datetime.time(16, 30))
-        Event.create("Yoga", "event-green", datetime.date(2021, 4, 15),  datetime.time(17, 30), datetime.time(18, 30))
+        Event.create("Erg", "event-orange", week_dates['Thursday'],  time(15, 30), time(16, 30))
+        Event.create("Yoga", "event-green", week_dates['Thursday'],  time(17, 30), time(18, 30))
         # Friday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 16),  datetime.time(9, 30), datetime.time(10, 30))
+        Event.create("Water Session", "event-blue", week_dates['Friday'],  time(9, 30), time(10, 30))
         # Saturday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 17),  datetime.time(9, 30), datetime.time(10, 30))
+        # Empty day
         # Sunday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 18),  datetime.time(9, 30), datetime.time(10, 30))
-        # Monday
-        Event.create("Water Session", "event-blue", datetime.date(2021, 4, 19),  datetime.time(9, 30), datetime.time(10, 30))
+        Event.create("Weight Training", "event-purple", week_dates['Sunday'],  time(18, 30), time(20, 00))
         return "Done!"
     except Exception as e:
         return(str(e))
+
+def get_week(given_date):
+    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    monday_date = given_date - timedelta(days = given_date.weekday())
+    week_dict = {}
+
+    # Monday -> Sunday
+    for day_index in range(0,7):
+        new_date = monday_date + timedelta(days=day_index)
+        week_dict[days[day_index]] = new_date.strftime('%Y-%m-%d')
+
+    return week_dict
 
 if __name__ == "__main__":
     print(migrate())
