@@ -61,7 +61,17 @@ def edit(id):
 def update(method, form_data):
     if method == 'POST':
         try:
-            x=1
+            id = form_data['id']
+            event_title = form_data['title']
+            event_date = form_data['date']
+            event_start = form_data['start']
+            event_end = form_data['end']
+
+            current_event = Event.get(id)
+            print(current_event)
+            
+            event_type = get_event_type(event_title)
+            current_event.update(event_title, event_type, event_date, event_start, event_end)
         except Exception as e:
             return(str(e))
     return redirect('/admin/training')
