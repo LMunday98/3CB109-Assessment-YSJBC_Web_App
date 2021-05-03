@@ -59,10 +59,10 @@ def logout():
 def user_home():
     return render_template('user/home.html')
 
-@app.route('/user/training')
+@app.route('/user/training', methods = ['POST', 'GET'])
 @login_required
 def user_training():
-    return render_template('user/training.html')
+    return event_controller.show('/user', request.method, request.form)
 
 
 
