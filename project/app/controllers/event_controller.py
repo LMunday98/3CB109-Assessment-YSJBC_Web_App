@@ -50,7 +50,11 @@ def create(method, form_data):
 
 def edit(id):
     try:
-        ex=1
+        event = Event.get(id)
+        if event != None:
+            return render_template('admin/training.html', action="Edit", event=event)
+        else:
+            return redirect('/admin/training')
     except Exception as e:
         return(str(e))
 
