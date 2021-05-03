@@ -9,15 +9,15 @@
     <div class="card-body">
       <h1 class="card-title">{{ day }}</h1>
       {% for event in events[day] %}
-        <div class="card event event-blue {{ event.event_type }}">
+        <div class="card event {{ event.event_type }}">
           <div class="card-body">
             <h3 class="card-title">{{ event.title }}</h3>
             <p class="card-text">
-              <em>{{ event.event_start }}</em>
-              <em>{{ event.event_end }}</em>
+              {{ event.event_start }}
+              {{ event.event_end }}
             </p>
             <a href="#" class="btn btn-primary">Edit</a>
-            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-danger">Delete</a>
           </div>
         </div>
       {% endfor %}
