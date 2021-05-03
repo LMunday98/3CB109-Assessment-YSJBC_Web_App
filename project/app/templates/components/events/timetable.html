@@ -1,114 +1,28 @@
 {% macro create_timetable(events) %}
 
 {% set days = [
-    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'
+  'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
 ] -%}
 
-<div class="card">
-  <div class="timetable">
-
-    <div class="week-names">
-      <div>monday</div>
-      <div>tuesday</div>
-      <div>wednesday</div>
-      <div>thursday</div>
-      <div>friday</div>
-      <div class="weekend">saturday</div>
-      <div class="weekend">sunday</div>
-    </div>
-
-    <div class="time-interval">
-      <div>8:00 - 10:00</div>
-      <div>10:00 - 12:00</div>
-      <div>12:00 - 14:00</div>
-      <div>14:00 - 16:00</div>
-      <div>16:00 - 18:00</div>
-      <div>18:00 - 20:00</div>
-    </div>
-
-    <div class="content">
-      
-      <div>
-        <div class="accent-orange-gradient"><p>test</p></div>
-      </div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div>
-        <div class="accent-green-gradient"></div>
-      </div>
-      <div class="weekend"></div>
-      <div class="weekend"></div>
-
-      <div></div>
-      <div></div>
-      <div></div>
-      <div>
-        <div class="accent-cyan-gradient"></div>
-      </div>
-      <div></div>
-      <div class="weekend"></div>
-      <div class="weekend"></div>
-
-      <div>
-        <div class="accent-pink-gradient"></div>
-      </div>
-      <div></div>
-      <div>
-        <div class="accent-purple-gradient"></div>
-      </div>
-      <div></div>
-      <div></div>
-      <div class="weekend"></div>
-      <div class="weekend"></div>
-
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class="weekend"></div>
-      <div class="weekend"></div>
-
-      <div>
-        <div class="accent-purple-gradient"></div>
-      </div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class="weekend"></div>
-      <div class="weekend"></div>
-
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class="weekend"></div>
-      <div class="weekend"></div>
-
+{% for day in days %}
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">{{ day }}</h1>
+      {% for event in events[day] %}
+        <div class="card event event-blue {{ event.event_type }}">
+          <div class="card-body">
+            <h3 class="card-title">{{ event.title }}</h3>
+            <p class="card-text">
+              <em>{{ event.event_start }}</em>
+              <em>{{ event.event_end }}</em>
+            </p>
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-primary">Delete</a>
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
-</div>
-
-<div class="card">
-  {% for day in days %}
-    <li>
-      {{ day }}
-      <ul>
-        {% for event in events[day] %}
-          <li>
-            <em>{{ event.title }}</em>
-            <em>{{ event.event_start }}</em>
-            <em>{{ event.event_end }}</em>
-            <em>{{ event.event_type }}</em>
-          </li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% endfor %}
-  </ul>
-</div>
+{% endfor %}
 
 {% endmacro %}
