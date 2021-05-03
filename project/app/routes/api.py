@@ -103,15 +103,6 @@ def admin_blog_edit(id=None):
 def admin_blog_delete():
     return blog_controller.delete(request.method, request.form)
 
-@app.route('/admin/training', methods = ['POST', 'GET'])
-@login_required
-def admin_training():
-    return event_controller.show('/admin', request.method, request.form)
-
-@app.route('/admin/training/create', methods=['GET', 'POST'])
-@login_required
-def admin_event_create():
-    return event_controller.create(request.method, request.form)
 
 
 
@@ -151,3 +142,32 @@ def admin_users_approve():
 @login_required
 def admin_users_unapprove():
     return user_manager.unapprove(request.method, request.form)
+
+
+
+
+# Define admin training api calls
+@app.route('/admin/training', methods = ['POST', 'GET'])
+@login_required
+def admin_training():
+    return event_controller.show('/admin', request.method, request.form)
+
+@app.route('/admin/training/create', methods=['GET', 'POST'])
+@login_required
+def admin_event_create():
+    return event_controller.create(request.method, request.form)
+
+@app.route('/admin/training/edit')
+@login_required
+def admin_training_edit_catch_bad_url():
+    return redirect('/admin/training')
+
+@app.route('/admin/training/edit/<id>')
+@login_required
+def admin_training_edit(id=None):
+    return event_controller.edit(id)
+
+@app.route('/admin/training/delete', methods = ['POST', 'GET'])
+@login_required
+def admin_training_delete():
+    return event_controller.delete(request.method, request.form)

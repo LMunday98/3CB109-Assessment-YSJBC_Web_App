@@ -48,6 +48,21 @@ def create(method, form_data):
     except Exception as e:
         return(str(e))
 
+def edit(id):
+    try:
+        ex=1
+    except Exception as e:
+        return(str(e))
+
+def delete(method, form_data):
+    if method == 'POST':
+        try:
+            delete_id = form_data['delete_id']
+            Event.delete(delete_id)
+        except Exception as e:
+            return(str(e))
+    return redirect('/admin/training')
+
 def get_week(given_date):
     monday_date = given_date - timedelta(days = given_date.weekday())
     sunday_date = monday_date + timedelta(days=6)
