@@ -55,10 +55,10 @@ def get_week(given_date):
 
 def get_event_type(event_title):
     type_dict = {
-        'Water Session' : 'event-1',
-        'Erg' : 'event-2',
-        'Weight Training' : 'event-3',
-        'Yoga' : 'event-4'
+        'Water Session' : 'event-blue',
+        'Erg' : 'event-orange',
+        'Weight Training' : 'event-purple',
+        'Yoga' : 'event-green'
     }
     return type_dict[event_title]
 
