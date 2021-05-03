@@ -12,11 +12,7 @@
         <div class="mb-3">
             <label for="title" class="form-label">Event Type</label>
             <select class="form-control" name="title" id="title" required>
-                <option value="Default" selected="selected">Please select an option</option>
-                <option value="Water Session">Water Session</option>
-                <option value="Erg">Erg</option>
-                <option value="Weight Training">Weight Training</option>
-                <option value="Yoga">Yoga</option>
+              {{ create_event_types() }}
             </select>
         </div>
         <div class="mb-3">
@@ -42,3 +38,29 @@
 
 <!-- This macro has to be a single line for the default values of the inputs to be correctly set -->
 {% macro get_val(value) %}{% if action == "Edit" %}{{ value }}{% endif %}{% endmacro %}
+
+{% macro create_event_types() %}
+  {% set event_types = [
+    'Water Session', 'Erg', 'Weight Training', 'Yoga'
+  ] -%}
+
+  {% if action == "Create" %}
+    <option value="Default" selected="selected">Please select an option</option>
+    {% for event_type in event_types %}
+      <option value="{{ event_type }}">{{ event_type }}</option>
+    {% endfor %}
+  {% endif %}
+
+  {% if action == "Edit" %}
+    {% for event_type in event_types %}
+      <option value="{{ event_type }}" {{ check_default(event.title, event_type) }}>{{ event_type }}</option>
+    {% endfor %}
+  {% endif %}
+
+{% endmacro %}
+
+{% macro check_default(value, current_type) %}
+  {% if value == current_type %}
+    selected="selected"
+  {% endif %}
+{% endmacro %}
