@@ -86,9 +86,16 @@ def delete(method, form_data):
     return redirect('/admin/training')
 
 def get_week(given_date):
+    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     monday_date = given_date - timedelta(days = given_date.weekday())
-    sunday_date = monday_date + timedelta(days=6)
-    return {'Monday' : monday_date.strftime('%Y-%m-%d'), 'Sunday' : sunday_date.strftime('%Y-%m-%d')}
+    week_dict = {'Monday' : monday_date.strftime('%Y-%m-%d')}
+
+    # Tuesday -> Sunday
+    for day_index in range(1,7):
+        new_date = monday_date + timedelta(days=day_index)
+        week_dict[days[day_index]] = new_date.strftime('%Y-%m-%d')
+
+    return week_dict
 
 def get_event_type(event_title):
     type_dict = {

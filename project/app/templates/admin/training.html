@@ -34,18 +34,18 @@
       </div>
 
       {% from "components/events/timetable.html" import create_timetable with context %}
-      {{ create_timetable(events) }}
-    {% endif %}
+        {{ create_timetable(events) }}
+      {% endif %}
 
-    {% if action == "Create" %}
-      {% from "components/events/event_form.html" import create_event_form with context %}
-      {{ create_event_form("") }}
-    {% endif %}
+      {% if action == "Create" %}
+        {% from "components/events/event_form.html" import create_event_form with context %}
+        {{ create_event_form("") }}
+      {% endif %}
 
-    {% if action == "Edit" %}
-      {% from "components/events/event_form.html" import create_event_form with context %}
-      {{ create_event_form(event) }}
-    {% endif %}
+      {% if action == "Edit" %}
+        {% from "components/events/event_form.html" import create_event_form with context %}
+        {{ create_event_form(event) }}
+      {% endif %}
   
   </div>
 </div>

@@ -7,14 +7,14 @@
 {% for day in days %}
   <div class="card">
     <div class="card-body">
-      <h1 class="card-title">{{ day }}</h1>
+      <h1 class="card-title">{{ day }}<div style="float: right;"><i class="fas fa-calendar-alt"></i> 5, May</div></h1>
       {% for event in events[day] %}
         <div class="card event {{ event.event_type }}">
           <div class="card-body">
             <h3 class="card-title">{{ event.title }}</h3>
             <p class="card-text">
-              {{ event.event_start }}
-              {{ event.event_end }}
+              <i class="fas fa-clock"></i>
+              {{ event.event_start }} - {{ event.event_end }}
             </p>
             {{ admin_actions(event.id) }}
           </div>
