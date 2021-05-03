@@ -45,14 +45,30 @@ def seed():
         except Exception as e:
             print(e)
 
-        blog1 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 4, 27, 15, 45)}
-        blog2 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 5, 5, 17, 1)}
-        blog3 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 5, 12, 11, 27)}
-        blog4 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 5, 19, 9, 55)}
+        blog1 = {'title' : 'Walk all over cancer!',
+        'desc' : 'Amazing work by everyone taking part in our charity fundraiser!',
+        'body' : 'This April York St John Boat Club are walking 10,000 steps a day throughout the month to help beat cancer sooner. Help us Walk All Over Cancer and fund life-saving research by sponsoring us. Cancer survival rates have doubled over the past 40 years. Consistent progress is being made but improvements to technology and ground-breaking work offer new opportunities to find different ways to prevent, diagnose and treat cancer and improve survival rates even further. Help Cancer Research UK improve results even faster.',
+        'datetime' : datetime(2021, 4, 27, 15, 45)}
+
+        blog2 = {'title' : 'This Girl Can week!',
+        'desc' : 'A big shout out to all the members that took part!',
+        'body' : 'It’s This Girl Can week and what can Girls do? ROW! This morning a wonderful turn out saw lots of female members pushing themselves on ergs and leg/abs based exercises! YOU GO GIRLS!!',
+        'datetime' : datetime(2021, 5, 5, 17, 1)}
+
+        blog3 = {'title' : 'Club AGM',
+        'desc' : 'The new 2021/2022 boat club committee!',
+        'body' : "Congratulations to the new club exec! I'm sure you'll all do an amazing job in the new year and a big thank you to everyone who participated and voted!",
+        'datetime' : datetime(2021, 5, 12, 11, 27)}
+
+        blog4 = {'title' : 'Big win for YSJ!',
+        'desc' : 'YSJBC smash head of the river competition',
+        'body' : 'Today was a big day for the boat club, as we take home the win at the annual competition between York University Boat Club, York City Boat Club and ourselves!',
+        'datetime' : datetime(2021, 5, 19, 9, 55)}
+
         population_data = [blog1, blog2, blog3, blog4]
 
-        for _ in range(4):
-            Blog.seed(population_data[_], _+1, src_thumb_path, dst_thumb_path)
+        for blog_index in range(4):
+            Blog.seed(population_data[blog_index], blog_index + 1, src_thumb_path, dst_thumb_path)
 
         # Seed events
         week_dates = get_week(date.today())
