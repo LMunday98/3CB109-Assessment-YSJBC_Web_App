@@ -50,7 +50,7 @@ def seed():
         'body' : 'This March York St John Boat Club are walking 10,000 steps a day throughout the month to help beat cancer sooner. Help us Walk All Over Cancer and fund life-saving research by sponsoring us. Cancer survival rates have doubled over the past 40 years. Consistent progress is being made but improvements to technology and ground-breaking work offer new opportunities to find different ways to prevent, diagnose and treat cancer and improve survival rates even further. Help Cancer Research UK improve results even faster.',
         'datetime' : datetime(2021, 3, 27, 15, 45)}
 
-        blog2 = {'title' : 'This Girl Can week!',
+        blog2 = {'title' : 'This Girl Can!',
         'desc' : 'A big shout out to all the members that took part!',
         'body' : 'It’s This Girl Can week and what can Girls do? ROW! This morning a wonderful turn out saw lots of female members pushing themselves on ergs and leg/abs based exercises! YOU GO GIRLS!!',
         'datetime' : datetime(2021, 4, 5, 17, 1)}

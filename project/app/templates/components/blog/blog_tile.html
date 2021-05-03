@@ -7,7 +7,7 @@
         <div class="inner">
           <header>
             <h2>{{ blog.title }}</h2>
-            <p>{{ blog.updated_at }}</p>
+            <p><i class="fas fa-calendar-alt"></i> {{ blog.display_date }}</p>
           </header>
           <p>{{ blog.desc }}</p>
           {{ admin_actions(blog.id) }}

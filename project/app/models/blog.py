@@ -14,14 +14,16 @@ class Blog(db.Model):
     desc = db.Column(db.Text)
     body = db.Column(db.Text)
     thumbnail = db.Column(db.String(128))
+    display_date = db.Column(db.String(128))
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
-    def __init__(self, title, desc, body, thumbnail, created_at, updated_at):
+    def __init__(self, title, desc, body, thumbnail, display_date, created_at, updated_at):
         self.title = title
         self.desc = desc
         self.body = body
         self.thumbnail = thumbnail
+        self.display_date = display_date
         self.created_at = created_at
         self.updated_at = updated_at
 
@@ -36,8 +38,8 @@ class Blog(db.Model):
         return blogs
     
     @classmethod
-    def create(cls, title, desc, body, thumbnail='blog1.jpg', created_at=datetime.datetime.now(), updated_at=datetime.datetime.now()):
-        blog = Blog(title, desc, body, thumbnail, created_at, updated_at)
+    def create(cls, title, desc, body, thumbnail='blog1.jpg',  display_date = datetime.datetime.now().date(), created_at=datetime.datetime.now(), updated_at=datetime.datetime.now()):
+        blog = Blog(title, desc, body, thumbnail, display_date, created_at, updated_at)
 
         # Actually add user to the database
         db.session.add(blog)
@@ -69,4 +71,4 @@ class Blog(db.Model):
         thumbnail = "blog" + str(thumb_id) + ".jpg"
 
         copyfile(src + '/' + thumbnail, dst + '/' + thumbnail)
-        cls.create(title, desc, body, thumbnail, given_datetime ,given_datetime)
+        cls.create(title, desc, body, thumbnail, given_datetime.date(), given_datetime, given_datetime)
