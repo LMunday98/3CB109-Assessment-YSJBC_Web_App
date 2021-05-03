@@ -61,16 +61,11 @@ class Blog(db.Model):
         db.session.commit()
 
     @classmethod
-    def seed(cls, fake, thumb_id):
+    def seed(cls, fake, thumb_id, src, dst):
         title = fake.sentence()
         desc = fake.sentence()
         body = fake.text()
         thumbnail = "blog" + str(thumb_id) + ".jpg"
 
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        static_path = dir_path + '/../static/'
-        src_thumb_path = static_path + 'seed_thumbnails/' + thumbnail
-        dst_thumb_path = static_path + 'blog_thumbnails/' + thumbnail
-        copyfile(src_thumb_path, dst_thumb_path)
-
+        copyfile(src+'/'+thumbnail, dst+'/'+thumbnail)
         cls.create(title, desc, body, thumbnail)

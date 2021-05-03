@@ -15,6 +15,7 @@ def migrate():
 def seed():
     print ("Seeding tables...")
     try:
+        # Seed users
         User.create("luke@admin", "LukePass", "admin")
         User.create("mike@admin", "Mike", "admin")
         User.create("user@gmail.com", "user", "user")
@@ -24,8 +25,16 @@ def seed():
             User.seed(fake, 'user')
         for _ in range(5):
             User.seed(fake)
+
+        # Seed blogs
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        static_path = dir_path + '/app/static/'
+        src_thumb_path = static_path + 'seed_thumbnails'
+        dst_thumb_path = static_path + 'blog_thumbnails'
         for _ in range(4):
-            Blog.seed(fake,_+1)
+            Blog.seed(fake,_+1,src_thumb_path,dst_thumb_path)
+
+        # Seed events
         week_dates = get_week(date.today())
         # Monday
         Event.create("Water Session", "event-blue", week_dates['Monday'], time(9, 30), time(10, 30))
