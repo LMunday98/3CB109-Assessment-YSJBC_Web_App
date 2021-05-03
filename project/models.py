@@ -45,8 +45,14 @@ def seed():
         except Exception as e:
             print(e)
 
+        blog1 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 4, 27, 15, 45)}
+        blog2 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 5, 5, 17, 1)}
+        blog3 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 5, 12, 11, 27)}
+        blog4 = {'title' : 'Hello', 'desc' : 'Some desc', 'body' : 'Some body text', 'datetime' : datetime(2021, 5, 19, 9, 55)}
+        population_data = [blog1, blog2, blog3, blog4]
+
         for _ in range(4):
-            Blog.seed(fake, _+1, src_thumb_path, dst_thumb_path)
+            Blog.seed(population_data[_], _+1, src_thumb_path, dst_thumb_path)
 
         # Seed events
         week_dates = get_week(date.today())
