@@ -67,5 +67,5 @@ class Blog(db.Model):
         body = fake.text()
         thumbnail = "blog" + str(thumb_id) + ".jpg"
 
-        copyfile(src+'/'+thumbnail, dst+'/'+thumbnail)
+        copyfile(src + '/' + thumbnail, dst + '/' + thumbnail)
         cls.create(title, desc, body, thumbnail)

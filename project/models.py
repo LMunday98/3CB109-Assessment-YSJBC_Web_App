@@ -46,7 +46,7 @@ def seed():
             print(e)
 
         for _ in range(4):
-            Blog.seed(fake,_+1,src_thumb_path,dst_thumb_path)
+            Blog.seed(fake, _+1, src_thumb_path, dst_thumb_path)
 
         # Seed events
         week_dates = get_week(date.today())
