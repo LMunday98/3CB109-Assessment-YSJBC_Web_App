@@ -42,6 +42,10 @@
       {{ create_event_form("") }}
     {% endif %}
 
+    {% if action == "Edit" %}
+      {% from "components/events/event_form.html" import create_event_form with context %}
+      {{ create_event_form(event) }}
+    {% endif %}
   
   </div>
 </div>

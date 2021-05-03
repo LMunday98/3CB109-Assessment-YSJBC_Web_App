@@ -40,8 +40,5 @@
 
 {% endmacro %}
 
-{% macro get_val(value) %}
-{% if action == "Edit" %}
-{{ value }}
-{% endif %}
-{% endmacro %}
+<!-- This macro has to be a single line for the default values of the inputs to be correctly set -->
+{% macro get_val(value) %}{% if action == "Edit" %}{{ value }}{% endif %}{% endmacro %}
