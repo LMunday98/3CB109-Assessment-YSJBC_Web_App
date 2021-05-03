@@ -1,0 +1,41 @@
+<!-- form.html-->
+
+{% extends "base.html" %}
+
+{% set user_nav = True %}
+{% set active_page = "training" %}
+{% block title %}Training{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/timetable.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+<div id="features-wrapper">
+  <div class="container">
+    
+    {% if action == "Show" %}
+      <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Training Schedule</h1>
+            <h3 class="card-text text-{{ msg_colour }}">{{ msg }}</h3>
+
+            <form action="/user/training" method="POST">
+              <div style="margin-top: 1em;">
+                <input type="week" id="week" name="week" value={{calendar_week}}>
+                <a><button type="submit" class="btn btn-primary">Submit</button></a>
+              </div>
+            </form>
+        </div>
+      </div>
+
+      {% from "components/events/timetable.html" import create_timetable with context %}
+        {{ create_timetable(events) }}
+      {% endif %}
+  
+  </div>
+</div>
+{% endblock %}
+

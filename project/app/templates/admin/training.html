@@ -1,0 +1,52 @@
+<!-- form.html-->
+
+{% extends "base.html" %}
+
+{% set admin_nav = True %}
+{% set active_page = "training" %}
+{% block title %}Admin Training{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/timetable.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+<div id="features-wrapper">
+  <div class="container">
+    
+    {% if action == "Show" %}
+      <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Training Scheduler</h1>
+            <h3 class="card-text text-{{ msg_colour }}">{{ msg }}</h3>
+            <a href="/admin/training/create" style="margin-bottom: 1em;"><button type="button" class="btn btn-primary">Create Event</button></a>
+
+            <form action="/admin/training" method="POST">
+              <div style="margin-top: 1em;">
+                <input type="week" id="week" name="week" value={{calendar_week}}>
+                <a><button type="submit" class="btn btn-primary">Submit</button></a>
+              </div>
+            </form>
+        </div>
+      </div>
+
+      {% from "components/events/timetable.html" import create_timetable with context %}
+        {{ create_timetable(events) }}
+      {% endif %}
+
+      {% if action == "Create" %}
+        {% from "components/events/event_form.html" import create_event_form with context %}
+        {{ create_event_form("") }}
+      {% endif %}
+
+      {% if action == "Edit" %}
+        {% from "components/events/event_form.html" import create_event_form with context %}
+        {{ create_event_form(event) }}
+      {% endif %}
+  
+  </div>
+</div>
+{% endblock %}
+
