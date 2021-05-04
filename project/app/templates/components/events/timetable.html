@@ -1,0 +1,34 @@
+{% macro create_timetable(events) %}
+
+{% for day in week_dict %}
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">{{ day }}<div style="float: right;"><i class="fas fa-calendar-alt"></i> {{ week_dict[day]['Date']}}, {{ week_dict[day]['Month']}}</div></h1>
+      {% for event in events[day] %}
+        <div class="card event {{ event.event_type }}">
+          <div class="card-body">
+            <h3 class="card-title">{{ event.title }}</h3>
+            <p class="card-text">
+              <i class="fas fa-clock"></i>
+              {{ event.event_start }} - {{ event.event_end }}
+            </p>
+            {{ admin_actions(event.id) }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
+
+{% endmacro %}
+
+{% macro admin_actions(id) %}
+  {% if admin_nav == True %}
+    <form action="/admin/training/delete" method="POST" class="action-form row justify-content-center w-100">
+      <!-- <a href="/admin/training/view/{{ id }}" class="col-4"><button type="button" class="btn btn-success w-100">View</button></a> -->
+      <a href="/admin/training/edit/{{ id }}" class="col-4"><button type="button" class="btn btn-primary w-100">Edit</button></a>
+      <input type="text" style="display: none;"" name="delete_id" id="delete_id" value="{{ id }}">
+      <a class="col-4"><button type="submit" class="btn btn-danger w-100" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a>
+    </form>
+  {% endif %}
+{% endmacro %}

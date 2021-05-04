@@ -23,6 +23,9 @@ def training():
 def contact():
     return render_template("public/contact.html")
 
+
+
+
 # Define auth routes
 @app.route('/auth/login')
 def user_login():

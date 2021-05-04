@@ -1,4 +1,5 @@
 from app import db
+from shutil import copyfile
 import datetime
 
 class Blog(db.Model):
@@ -8,19 +9,23 @@ class Blog(db.Model):
     # Always need an id
     id = db.Column(db.Integer, primary_key=True)
 
-    # User attributes
+    # Blog attributes
     title = db.Column(db.String(128))
     desc = db.Column(db.Text)
     body = db.Column(db.Text)
+    thumbnail = db.Column(db.String(128))
+    display_date = db.Column(db.String(128))
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
-    def __init__(self, title, desc, body):
+    def __init__(self, title, desc, body, thumbnail, display_date, created_at, updated_at):
         self.title = title
         self.desc = desc
         self.body = body
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        self.thumbnail = thumbnail
+        self.display_date = display_date
+        self.created_at = created_at
+        self.updated_at = updated_at
 
     @staticmethod
     def get(id):
@@ -33,8 +38,8 @@ class Blog(db.Model):
         return blogs
     
     @classmethod
-    def create(cls, title, desc, body):
-        blog = Blog(title, desc, body)
+    def create(cls, title, desc, body, thumbnail='blog1.jpg',  display_date = datetime.datetime.now().date(), created_at=datetime.datetime.now(), updated_at=datetime.datetime.now()):
+        blog = Blog(title, desc, body, thumbnail, display_date, created_at, updated_at)
 
         # Actually add user to the database
         db.session.add(blog)
@@ -58,8 +63,12 @@ class Blog(db.Model):
         db.session.commit()
 
     @classmethod
-    def seed(cls, fake):
-        title = fake.sentence()
-        desc = fake.sentence()
-        body = fake.text()
-        cls.create(title, desc, body)
+    def seed(cls, population_data, thumb_id, src, dst):
+        title = population_data['title']
+        desc = population_data['desc']
+        body = population_data['body']
+        given_datetime = population_data['datetime']
+        thumbnail = "blog" + str(thumb_id) + ".jpg"
+
+        copyfile(src + '/' + thumbnail, dst + '/' + thumbnail)
+        cls.create(title, desc, body, thumbnail, given_datetime.date(), given_datetime, given_datetime)

@@ -35,7 +35,7 @@
         <h1 style="margin-top: 0.5em; text-align: center;">
           Latest News
         </h1>
-      {% from "components/blog_rows.html" import create_blog_rows with context %}
+      {% from "components/blog/blog_rows.html" import create_blog_rows with context %}
       {{ create_blog_rows(recent_blogs) }}
     </div>
   </div>
