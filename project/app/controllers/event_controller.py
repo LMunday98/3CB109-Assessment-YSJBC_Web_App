@@ -25,6 +25,15 @@ def show(route, method, form_data, msg="", msg_colour=""):
             event.event_end = event.event_end.strftime("%H:%M")
             dict_day.append(event)
 
+        sorted_events = {
+            'Monday' : event_dict['Monday'],
+            'Tuesday' : event_dict['Tuesday'],
+            'Wednesday' : event_dict['Wednesday'],
+            'Thursday' : event_dict['Thursday'],
+            'Friday' : event_dict['Friday'],
+            'Saturday' : event_dict['Saturday'],
+            'Sunday' : event_dict['Sunday'] }
+
         week_dict = {}
 
         # Get month and day number
@@ -35,7 +44,7 @@ def show(route, method, form_data, msg="", msg_colour=""):
             week_dict[day] = {'Date' : day_num, 'Month' : month}
             
         url = route + '/training.html'
-        return render_template(url, calendar_week=calendar_week, week_dict=week_dict, events=event_dict, action="Show", msg=msg, msg_colour=msg_colour)
+        return render_template(url, calendar_week=calendar_week, week_dict=week_dict, events=sorted_events, action="Show", msg=msg, msg_colour=msg_colour)
     except Exception as e:
         return(str(e))
 

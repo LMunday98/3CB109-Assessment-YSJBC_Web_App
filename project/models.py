@@ -53,7 +53,7 @@ def seed():
 
         blog2 = {'title' : 'This Girl Can!',
         'desc' : 'A big shout out to all the members that took part!',
-        'body' : "It’s This Girl Can week and what can Girls do? ROW! This morning a wonderful turn out saw lots of female members pushing themselves on ergs and leg/abs based exercises! YOU GO GIRLS!!",
+        'body' : "It’s This Girl Can week and what can Girls do? ROW! This morning a wonderful turnout saw lots of female members pushing themselves on ergs and leg/abs based exercises! YOU GO GIRLS!!",
         'datetime' : datetime(2021, 4, 5, 17, 1)}
 
         blog3 = {'title' : 'Club AGM',
