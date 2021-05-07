@@ -10,7 +10,8 @@ def show(route, method, form_data, msg="", msg_colour=""):
 
         if method == 'POST':
             new_week = form_data['week']
-            converted_week = datetime.strptime(new_week + '-1', '%G-W%V-%u')
+            week_string = new_week + '-1'
+            converted_week = datetime.strptime(week_string, "%Y-W%W-%w")
             given_week = get_week(converted_week)
             calendar_week = new_week
 

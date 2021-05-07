@@ -24,7 +24,8 @@ def login(method, form_data):
                     return flask.abort(400)
 
                 account_type = user.account_type
-                return render_template(account_type + "/home.html", msg="Logged in!")
+                # return render_template(account_type + "/home.html", msg="Logged in!")
+                return redirect(account_type + "/home")
             else:
                 return render_template("auth/login.html", msg="Email or password was incorrect!")
 
@@ -55,6 +56,11 @@ def register(method, form_data):
             return(str(e))
 
     return render_template('auth/register.html')
+
+def check_admin(current_user):
+    if current_user.account_type == 'admin':
+        return True
+    return False
 
 def logout():
     # logout stuff

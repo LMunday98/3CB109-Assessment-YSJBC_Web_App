@@ -5,13 +5,51 @@
 {% set active_page = "contact" %}
 {% block title %}Contact{% endblock %}
 
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/contact.css') }}">
+{% endblock %}
+
 {% block body %}
 <div class="container">
   <div class="card">
     <div class="card-body">
-      <h1 class="card-title">The Contact Page</h1>
-      <p class="card-text">You can learn more about my website here.</p>
+      <h1 class="card-title" style="text-align: center;">Here's how you can contact us!</h1>
+      <p class="card-text" style="text-align: center;">Below you can find our social handles, contact information and the location of the boat house.</p>
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-body">
+
+      <ul class="icons d-flex justify-content-center">
+        <li><a style="pointer-events: none;"><i class="far fa-envelope fa-2x"></i></a></li>
+        <li><p style="margin-top: .65em; font-size: large;" class="card-text">ysjbc@yorksj.ac.uk</p></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+
+      <ul class="icons d-flex justify-content-center">
+        <li><a href="https://www.facebook.com/YSJBC/"><i class="fab fa-facebook-f fa-2x"></i></a></li>
+        <li><a href="https://twitter.com/YSJboatclub?s=20"><i class="fab fa-twitter fa-2x"></i></a></li>
+        <li><a href="https://www.instagram.com/ysjbc/?hl=en"><i class="fab fa-instagram fa-2x"></i></a></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA967PQLh5z1IarqMsoJFAhn5CvGJWcSjo&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </div>
 </div>
+
+<script src="{{ url_for('static', filename='assets/js/gmaps.js') }}"></script>
 {% endblock %}
