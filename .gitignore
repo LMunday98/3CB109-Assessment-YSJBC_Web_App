@@ -131,3 +131,5 @@ dmypy.json
 
 # Custom
 blog_thumbnails/
+tree.py
+treepath.py
