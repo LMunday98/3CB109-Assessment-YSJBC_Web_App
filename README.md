@@ -16,17 +16,17 @@ This assignment requires the development of a REST web service application. A cl
 
 1. Begin by cloning the repository to your local machine
 
-2. Ensure all the required modules documented in 'project/requirements.txt' are installed
+2. Ensure all the required modules documented in `project/requirements.txt` are installed
 
-3. Check the connection settings in 'project/run.py' and 'project/app/\_\_init\_\_.py'
+3. Check the connection settings in `project/run.py` and `project/app/\_\_init\_\_.py`
 
-   Eg: If running locally, set the connection ip and port in run.py to '0.0.0.0:5000' and the sqlaclhemy database URI to 'mysql://root:''@127.0.0.1/flask'
+   Eg: If running locally, set the connection ip and port in run.py to `0.0.0.0:5000` and the sqlaclhemy database URI to `mysql://root:''@127.0.0.1/flask`
    
-   This assumes a mysql database has been initalised with the name 'flask'
+   This assumes a mysql database has been initalised with the name `flask`
    
-4. Run the 'project/models.py' script to migrate and seed the database
+4. Run the `project/models.py` script to migrate and seed the database
 
-5. Run the 'project/run.py' script to start the flask web server and connect using the ip and port number defined in step 2
+5. Run the `project/run.py` script to start the flask web server and connect using the ip and port number defined in step 2
 
 ## Deafult User Accounts
 
@@ -95,7 +95,7 @@ Permissions: Read (Limited to public content)
 
 * Index Page CSS: https://html5up.net/
   
-  Listed under '/assets/css/template.css'
+  Listed under `/assets/css/template.css`
 
 ## Project Structure
 ``` bash
