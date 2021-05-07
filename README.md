@@ -87,11 +87,15 @@ Permissions: Read (Limited to public content)
 
 ## Links
 
-GitHub:
-https://github.com/LMunday98/3CB109-Assessment-YSJBC_Web_App
+* GitHub: https://github.com/LMunday98/3CB109-Assessment-YSJBC_Web_App
 
-README:
-https://github.com/LMunday98/3CB109-Assessment-YSJBC_Web_App/blob/main/README.md
+* README: https://github.com/LMunday98/3CB109-Assessment-YSJBC_Web_App/blob/main/README.md
+
+* Bootstrap: https://getbootstrap.com/
+
+* Index Page CSS: https://html5up.net/
+  
+  Listed under '/assets/css/template.css'
 
 ## Project Structure
 ``` bash
