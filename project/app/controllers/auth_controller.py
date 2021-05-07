@@ -57,6 +57,11 @@ def register(method, form_data):
 
     return render_template('auth/register.html')
 
+def check_admin(current_user):
+    if current_user.account_type == 'admin':
+        return True
+    return False
+
 def logout():
     # logout stuff
     try:
