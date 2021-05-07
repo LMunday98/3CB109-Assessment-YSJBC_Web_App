@@ -2075,6 +2075,7 @@ input, select, textarea {
 	#banner {
 		position: relative;
 		padding: 4.5em;
+		z-index: 0;
 	}
 
 		#banner h2 {
@@ -2270,8 +2271,12 @@ input, select, textarea {
 			}
 
 		/* Nav */
-
+/*
 			#nav {
+				display: none;
+			}
+*/
+			#nav-logo {
 				display: none;
 			}
 
