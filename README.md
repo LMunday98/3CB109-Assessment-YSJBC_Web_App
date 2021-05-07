@@ -37,6 +37,13 @@ Password: LukePass
 
 Permissions: Create, Read, Update and Delete
 
+### Admin Account
+Email: mike@admin
+
+Password: Mike
+
+Permissions: Create, Read, Update and Delete
+
 ### User Account
 Email: user@gmail.com
 
