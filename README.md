@@ -86,7 +86,7 @@ https://github.com/LMunday98/3CB109-Assessment-YSJBC_Web_App
 README:
 https://github.com/LMunday98/3CB109-Assessment-YSJBC_Web_App/blob/main/README.md
 
-## Project Stucture
+## Project Structure
 ``` bash
 3CB109-Assessment-WebAppREST/
 ├── .gitignore
