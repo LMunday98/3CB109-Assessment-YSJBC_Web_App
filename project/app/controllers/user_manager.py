@@ -16,6 +16,7 @@ def get(user_id, msg='', msg_colour=None):
 def approve(method, form_data):
     if (method == 'POST') :
         try:
+            # find and approve user by given id
             user = User.get_user_by_id(form_data['approve_id'])
             user.set_account_type('user')
             return view_page(user.email + ' has been approved!', 'green')
@@ -26,6 +27,7 @@ def approve(method, form_data):
 def unapprove(method, form_data):
     if (method == 'POST') :
         try:
+            # find and unapprove user by given id
             user = User.get_user_by_id(form_data['unapprove_id'])
             user.set_account_type('guest')
             return view_page(user.email + ' has been unapproved!', 'green')
@@ -36,6 +38,7 @@ def unapprove(method, form_data):
 def delete(method, form_data):
     if (method == 'POST') :
         try:
+            # get form data and delete user
             User.delete(form_data['delete_id'])
             return view_page('Account successfully deleted!', 'green')
         except Exception as e:
@@ -43,6 +46,7 @@ def delete(method, form_data):
     return view_page('Error deleting account!', 'red')
 
 def view_page(message, msg_colour):
+    # used to apply colour to messages
     if msg_colour == 'red':
         msg_colour = 'danger'
     if msg_colour == 'green':
