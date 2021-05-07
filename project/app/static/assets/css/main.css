@@ -35,9 +35,10 @@ h1, h2, h3, h4, h5, h6 {
 /* nav */
 
 nav {
-    margin-bottom: 3em;
+    /*margin-bottom: 3em;*/
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     background-color: white;
+    z-index: 999;
 }
 
 #nav #nav-logo {
@@ -46,7 +47,7 @@ nav {
     font-weight: 400;
     font-size: 1.75em;
     letter-spacing: 0.05em;
-    display: inline-block;
+    /*display: inline-block;*/r
     vertical-align: middle;
 }
 
@@ -71,6 +72,10 @@ nav {
 #nav-links a.current {
     background: #444;
     color: #fff;
+}
+
+#navbarNavAltMarkup {
+    z-index: 9999;
 }
 
 /* Section/Article */
@@ -99,5 +104,5 @@ header {
     }
 
 footer {
-    margin: 2.5em 0 0 0;
+    margin: 2.5em 0 1em 0;
 }
