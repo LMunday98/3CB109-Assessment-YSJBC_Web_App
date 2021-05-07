@@ -25,15 +25,6 @@ def show(route, method, form_data, msg="", msg_colour=""):
             event.event_end = event.event_end.strftime("%H:%M")
             dict_day.append(event)
 
-        sorted_events = {
-            'Monday' : event_dict['Monday'],
-            'Tuesday' : event_dict['Tuesday'],
-            'Wednesday' : event_dict['Wednesday'],
-            'Thursday' : event_dict['Thursday'],
-            'Friday' : event_dict['Friday'],
-            'Saturday' : event_dict['Saturday'],
-            'Sunday' : event_dict['Sunday'] }
-
         week_dict = {}
 
         # Get month and day number

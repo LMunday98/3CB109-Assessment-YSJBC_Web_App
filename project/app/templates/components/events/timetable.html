@@ -1,6 +1,8 @@
 {% macro create_timetable(events) %}
 
-{% for day in week_dict %}
+{% set days = [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday] -%}
+
+{% for day in days %}
   <div class="card">
     <div class="card-body">
       <h1 class="card-title">{{ day }}<div style="float: right;"><i class="fas fa-calendar-alt"></i> {{ week_dict[day]['Date']}}, {{ week_dict[day]['Month']}}</div></h1>
