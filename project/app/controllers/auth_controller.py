@@ -24,7 +24,8 @@ def login(method, form_data):
                     return flask.abort(400)
 
                 account_type = user.account_type
-                return render_template(account_type + "/home.html", msg="Logged in!")
+                # return render_template(account_type + "/home.html", msg="Logged in!")
+                return redirect(account_type + "/home")
             else:
                 return render_template("auth/login.html", msg="Email or password was incorrect!")
 

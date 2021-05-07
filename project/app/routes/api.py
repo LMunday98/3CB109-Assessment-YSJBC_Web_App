@@ -57,7 +57,8 @@ def logout():
 @app.route('/user/home')
 @login_required
 def user_home():
-    return render_template('user/home.html')
+    # return render_template('user/home.html')
+    return redirect('/user/training')
 
 @app.route('/user/training', methods = ['POST', 'GET'])
 @login_required
@@ -71,7 +72,8 @@ def user_training():
 @app.route('/admin/home')
 @login_required
 def admin_home():
-    return render_template('admin/home.html')
+    # return render_template('admin/home.html')
+    return redirect('/admin/users')
 
 @app.route('/admin/blog')
 @login_required
