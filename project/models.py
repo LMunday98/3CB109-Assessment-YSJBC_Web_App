@@ -36,11 +36,13 @@ def seed():
 
         access_rights = 0o755
 
+        # Delete folder
         try:
             shutil.rmtree(dst_thumb_path)
         except Exception as e:
             print(e)
 
+        # Recreate folder
         try:
             os.mkdir(dst_thumb_path, access_rights)
         except Exception as e:
